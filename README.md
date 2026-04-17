@@ -1,4 +1,4 @@
 # Omelette-Squad
 Omelette Squad FTW UM Hackathon
 
-Test
+The Omelette Squad is one of the strongest teams to enter the YBA scene. 
