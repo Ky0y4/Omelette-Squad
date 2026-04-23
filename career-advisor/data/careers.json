@@ -1,0 +1,320 @@
+{
+  "careers": [
+    {
+      "role": "Data Analyst",
+      "category": "Technology & Analytics",
+      "salary_range": "$60,000 - $100,000",
+      "demand_level": "Very High",
+      "growth_outlook": "Excellent",
+      "required_skills": [
+        "SQL",
+        "Data Visualization",
+        "Excel",
+        "Python or R",
+        "Statistical Analysis",
+        "Business Intelligence Tools"
+      ],
+      "preferred_interests": [
+        "Data Analysis",
+        "Problem Solving",
+        "Business Intelligence",
+        "Statistics",
+        "Storytelling with Data"
+      ],
+      "work_style": [
+        "Detail-oriented",
+        "Analytical",
+        "Project-based",
+        "Remote-friendly"
+      ],
+      "education_relevance": "Bachelor's degree in Statistics, Mathematics, Computer Science, or related field. Certifications in data tools (Tableau, PowerBI) beneficial.",
+      "short_description": "Analyze business data to identify trends, patterns, and insights that drive strategic decision-making."
+    },
+    {
+      "role": "Software Engineer",
+      "category": "Technology & Development",
+      "salary_range": "$80,000 - $150,000+",
+      "demand_level": "Very High",
+      "growth_outlook": "Excellent",
+      "required_skills": [
+        "Programming Languages (Java, Python, JavaScript, C++)",
+        "Object-Oriented Design",
+        "Software Architecture",
+        "Version Control (Git)",
+        "API Development",
+        "Testing & Debugging"
+      ],
+      "preferred_interests": [
+        "Coding",
+        "Problem Solving",
+        "Technology Innovation",
+        "Software Design",
+        "Continuous Learning"
+      ],
+      "work_style": [
+        "Collaborative",
+        "Fast-paced",
+        "Remote-friendly",
+        "Flexible"
+      ],
+      "education_relevance": "Bachelor's degree in Computer Science, Software Engineering, or related field. Bootcamp graduates also competitive with portfolio.",
+      "short_description": "Design, develop, and maintain software applications and systems that solve real-world problems."
+    },
+    {
+      "role": "UI/UX Designer",
+      "category": "Design & Creative",
+      "salary_range": "$65,000 - $120,000",
+      "demand_level": "High",
+      "growth_outlook": "Very Good",
+      "required_skills": [
+        "Figma or Adobe XD",
+        "User Research",
+        "Wireframing",
+        "Prototyping",
+        "UI Design",
+        "User Testing",
+        "CSS/HTML basics"
+      ],
+      "preferred_interests": [
+        "Design",
+        "User Experience",
+        "Creativity",
+        "Problem Solving",
+        "Psychology",
+        "Visual Communication"
+      ],
+      "work_style": [
+        "Creative",
+        "Collaborative",
+        "Iterative",
+        "User-focused"
+      ],
+      "education_relevance": "Degree in Design, Fine Arts, or related field recommended. Strong portfolio is key. UX design bootcamps widely accepted.",
+      "short_description": "Create intuitive and visually appealing user interfaces for digital products, ensuring optimal user experience."
+    },
+    {
+      "role": "Digital Marketer",
+      "category": "Marketing & Business",
+      "salary_range": "$50,000 - $90,000",
+      "demand_level": "High",
+      "growth_outlook": "Very Good",
+      "required_skills": [
+        "SEO & SEM",
+        "Social Media Marketing",
+        "Content Marketing",
+        "Analytics",
+        "Google Ads",
+        "Email Marketing",
+        "Data Interpretation"
+      ],
+      "preferred_interests": [
+        "Marketing",
+        "Technology",
+        "Communication",
+        "Consumer Behavior",
+        "Creativity",
+        "Analytics"
+      ],
+      "work_style": [
+        "Creative",
+        "Deadline-driven",
+        "Analytical",
+        "Collaborative"
+      ],
+      "education_relevance": "Bachelor's degree in Marketing, Communications, or Business. Certifications (Google Analytics, HubSpot) highly valued.",
+      "short_description": "Develop and execute digital marketing strategies to build brand awareness, drive engagement, and generate leads."
+    },
+    {
+      "role": "Product Manager",
+      "category": "Business & Leadership",
+      "salary_range": "$100,000 - $180,000+",
+      "demand_level": "High",
+      "growth_outlook": "Excellent",
+      "required_skills": [
+        "Product Strategy",
+        "Market Research",
+        "Data Analysis",
+        "Communication",
+        "Leadership",
+        "Roadmap Planning",
+        "Stakeholder Management"
+      ],
+      "preferred_interests": [
+        "Business Strategy",
+        "Technology",
+        "User Experience",
+        "Leadership",
+        "Innovation",
+        "Problem Solving"
+      ],
+      "work_style": [
+        "Strategic",
+        "Collaborative",
+        "Fast-paced",
+        "Leadership-focused"
+      ],
+      "education_relevance": "MBA or Bachelor's degree in Business, Computer Science, or related field. PM certifications (Reforge, General Assembly) beneficial.",
+      "short_description": "Define product vision and strategy, manage roadmaps, and lead cross-functional teams to deliver innovative products."
+    },
+    {
+      "role": "Business Analyst",
+      "category": "Business & Analysis",
+      "salary_range": "$60,000 - $110,000",
+      "demand_level": "High",
+      "growth_outlook": "Very Good",
+      "required_skills": [
+        "Requirements Gathering",
+        "Data Analysis",
+        "Business Process Mapping",
+        "SQL",
+        "Documentation",
+        "Communication",
+        "Problem Solving"
+      ],
+      "preferred_interests": [
+        "Business Optimization",
+        "Analysis",
+        "Technology",
+        "Problem Solving",
+        "Process Improvement",
+        "Data"
+      ],
+      "work_style": [
+        "Detail-oriented",
+        "Analytical",
+        "Collaborative",
+        "Structured"
+      ],
+      "education_relevance": "Bachelor's degree in Business, Computer Science, or related field. CBAP certification demonstrates expertise.",
+      "short_description": "Bridge business and technology by analyzing requirements, identifying improvements, and translating needs into solutions."
+    },
+    {
+      "role": "Accountant",
+      "category": "Finance & Accounting",
+      "salary_range": "$50,000 - $95,000",
+      "demand_level": "Moderate to High",
+      "growth_outlook": "Good",
+      "required_skills": [
+        "GAAP & Tax Regulations",
+        "Financial Accounting",
+        "Excel",
+        "Bookkeeping",
+        "Audit Skills",
+        "QuickBooks",
+        "Attention to Detail"
+      ],
+      "preferred_interests": [
+        "Finance",
+        "Accuracy",
+        "Compliance",
+        "Numbers",
+        "Organization",
+        "Law & Regulations"
+      ],
+      "work_style": [
+        "Detail-oriented",
+        "Organized",
+        "Independent",
+        "Deadline-driven"
+      ],
+      "education_relevance": "Bachelor's degree in Accounting or Finance required. CPA (Certified Public Accountant) license highly valued and often required.",
+      "short_description": "Prepare and examine financial records, ensure tax compliance, and provide financial guidance to individuals and organizations."
+    },
+    {
+      "role": "HR Executive",
+      "category": "Human Resources & Management",
+      "salary_range": "$70,000 - $130,000",
+      "demand_level": "Moderate to High",
+      "growth_outlook": "Good",
+      "required_skills": [
+        "Talent Acquisition",
+        "Employee Relations",
+        "HR Systems",
+        "Compliance & Labor Law",
+        "Communication",
+        "Conflict Resolution",
+        "Strategic Planning"
+      ],
+      "preferred_interests": [
+        "People Management",
+        "Organizational Development",
+        "Communication",
+        "Problem Solving",
+        "Psychology",
+        "Business Strategy"
+      ],
+      "work_style": [
+        "People-focused",
+        "Collaborative",
+        "Strategic",
+        "Diplomatic"
+      ],
+      "education_relevance": "Bachelor's degree in HR, Business, or related field. SHRM certification (SHRM-CP, SHRM-SCP) demonstrates expertise.",
+      "short_description": "Manage human resources functions including recruitment, employee development, compensation, and organizational strategy."
+    },
+    {
+      "role": "Cloud Architect",
+      "category": "Technology & Infrastructure",
+      "salary_range": "$120,000 - $180,000+",
+      "demand_level": "Very High",
+      "growth_outlook": "Excellent",
+      "required_skills": [
+        "AWS, Azure, or Google Cloud",
+        "Infrastructure Design",
+        "DevOps",
+        "Security Best Practices",
+        "Networking",
+        "Containerization (Docker, Kubernetes)",
+        "Cost Optimization"
+      ],
+      "preferred_interests": [
+        "Cloud Technology",
+        "System Design",
+        "Infrastructure",
+        "Problem Solving",
+        "Innovation",
+        "Scalability"
+      ],
+      "work_style": [
+        "Strategic",
+        "Collaborative",
+        "Technical",
+        "Solution-focused"
+      ],
+      "education_relevance": "Bachelor's degree in Computer Science or related field. Cloud certifications (AWS Solutions Architect, Azure Administrator) essential.",
+      "short_description": "Design and implement scalable, secure cloud infrastructure solutions for organizations to optimize operations."
+    },
+    {
+      "role": "Content Manager",
+      "category": "Marketing & Communications",
+      "salary_range": "$50,000 - $85,000",
+      "demand_level": "Moderate to High",
+      "growth_outlook": "Good",
+      "required_skills": [
+        "Content Strategy",
+        "Writing & Editing",
+        "SEO",
+        "Project Management",
+        "CMS Platforms",
+        "Analytics",
+        "Social Media"
+      ],
+      "preferred_interests": [
+        "Writing",
+        "Storytelling",
+        "Marketing",
+        "Creativity",
+        "Communication",
+        "Strategy"
+      ],
+      "work_style": [
+        "Creative",
+        "Organized",
+        "Detail-oriented",
+        "Remote-friendly"
+      ],
+      "education_relevance": "Bachelor's degree in Journalism, Communications, Marketing, or English. Portfolio of writing samples critical.",
+      "short_description": "Create, organize, and manage content across digital platforms to engage audiences and support business goals."
+    }
+  ]
+}

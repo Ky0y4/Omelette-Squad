@@ -1,0 +1,420 @@
+.main-container {
+  padding: 20px;
+}
+
+.header h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-banner {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.reset-button {
+  margin-top: 20px;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease;
+}
+
+.form-view {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.results-view {
+  position: relative;
+}
+
+.back-button {
+  background: white;
+  color: #667eea;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+  background: #f5f5f5;
+  transform: translateX(-4px);
+}
+
+.results-container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.results-header {
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.results-header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.summary {
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.top-matches {
+  margin-bottom: 40px;
+}
+
+.top-matches h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .matches-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.career-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.career-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  transform: translateY(-4px);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #667eea15, #764ba215);
+  padding: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.rank {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.card-header h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.match-score {
+  margin-top: 10px;
+}
+
+.score-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.6s ease;
+}
+
+.score-text {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content > div {
+  margin-bottom: 16px;
+}
+
+.card-content h4 {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.card-content ul,
+.card-content ol {
+  margin-left: 20px;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.card-content li {
+  margin-bottom: 6px;
+}
+
+.trade-off-section {
+  margin: 40px 0;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.trade-off-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.trade-off-content {
+  color: #666;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.trade-off-content p {
+  margin-bottom: 10px;
+}
+
+.trade-off-content .bold {
+  font-weight: 600;
+  color: #333;
+}
+
+.recommendations-section {
+  margin: 40px 0;
+}
+
+.recommendations-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.recommendations-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.recommendations-list li {
+  padding: 12px 0;
+  padding-left: 30px;
+  position: relative;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.recommendations-list li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  color: white;
+  margin-top: 60px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* New styles for page.js layout */
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+}
+
+.main-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* Error State */
+.error-message {
+  background: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message h3 {
+  color: #c62828;
+  margin: 0 0 10px 0;
+}
+
+.error-message p {
+  color: #d32f2f;
+  margin: 0 0 15px 0;
+}
+
+.retry-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.retry-btn:hover {
+  background: #d32f2f;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading p {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.loading-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Form Section */
+.form-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Results Section */
+.results-section {
+  position: relative;
+}
+
+.back-btn {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 30px 15px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .main-content {
+    padding: 0 15px 30px;
+  }
+
+  .loading {
+    padding: 40px 15px;
+  }
+}
+  .main-container {
+    padding: 20px 15px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-view,
+  .results-container {
+    padding: 25px;
+  }
+
+  .results-header h1 {
+    font-size: 1.5rem;
+  }
+
