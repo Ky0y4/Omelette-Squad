@@ -1,0 +1,18 @@
+{
+  "claudeCode.environmentVariables": [
+    {
+      "name": "ANTHROPIC_BASE_URL",
+      "value": "https://api.ilmu.ai/anthropic"
+    },
+    {
+      "name": "ANTHROPIC_AUTH_TOKEN",
+      "value": "sk-17398a6fe1298369a42fcdc5affa647f6e7a8d03f8ffb4f4"
+    },
+    {
+      "name": "ANTHROPIC_MODEL",
+      "value": "ilmu-glm-5.1"
+    }
+  ],
+  "claudeCode.disableLoginPrompt": true,
+  "claudeCode.selectedModel": ""
+}
