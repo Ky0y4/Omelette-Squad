@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import UserForm from '@/components/UserForm';
-import ResultsPanel from '@/components/ResultsPanel';
+import { useState } from "react";
+import UserForm from "@/components/UserForm";
+import ResultsPanel from "@/components/ResultsPanel";
 
 export default function Home() {
   const [results, setResults] = useState(null);
@@ -15,24 +15,22 @@ export default function Home() {
     setResults(null);
 
     try {
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8000/analyze", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(userProfile),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Analysis failed');
+        throw new Error("The python there dk why returned an error");
       }
 
       const data = await response.json();
       setResults(data);
     } catch (err) {
-      setError(err.message || 'An error occurred during analysis');
-      console.error('Analysis error:', err);
+      setError(err.message || "Check if python is running on port 8000");
     } finally {
       setIsLoading(false);
     }
