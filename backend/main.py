@@ -1,6 +1,14 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
+import json
+import re
+
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -19,22 +27,54 @@ class UserProfile(BaseModel):
 @app.post("/analyze")
 async def analyze_career(profile: UserProfile):
     print(f"I RECEIVED DA DATA: {profile.description}")
-    return {
-        "summary": "You have a strong profile for technical leadership and software development.",
+    try:
+        result = await get_response(profile)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+async def get_response(profile: UserProfile) -> dict:
+    print("GENERATING RESPONSE TIME")
+
+    client = OpenAI(
+        api_key=os.getenv("ZAI_API_KEY"),
+        base_url="https://api.ilmu.ai/v1",
+    )
+    
+    content = f"""
+    Given this person's profile: {profile.description}
+
+    Give your recommendations on what this person should do with their career and future.
+    Respond ONLY with a valid JSON object — no markdown, no explanation, no code fences.
+    Follow this exact structure:
+
+    {{
+        "summary": "...",
         "top_careers": [
-            {
-                "role": "Senior Full Stack Engineer",
-                "match_score": 95,
-                "why_it_fits": "Your experience with React and Python aligns perfectly with modern web stacks.",
-                "trade_offs": "Higher responsibility and potential for on-call hours.",
-                "next_steps": "1. Master System Design\n2. Learn cloud architecture (AWS/GCP)\n3. Contribute to open source."
-            },
-            {
-                "role": "AI Solutions Architect",
-                "match_score": 88,
-                "why_it_fits": "Your interest in AI and solving complex problems is a great fit for architecting intelligent systems.",
-                "trade_offs": "Requires keeping up with very rapid research changes.",
-                "next_steps": "1. Study LLM orchestration\n2. Get certified in Machine Learning\n3. Build a portfolio of AI agents."
-            }
+            {{
+                "role": "...",
+                "match_score": 90,
+                "why_it_fits": "...",
+                "trade_offs": "...",
+                "next_steps": "..."
+            }}
         ]
-    }
+    }}
+
+    You can include more or fewer careers depending on what fits this person.
+    """
+
+    response = client.chat.completions.create(
+        model="ilmu-glm-5.1",
+        messages=[
+            {"role": "system", "content": "You are an expert career consultant. Always respond with valid JSON only."},
+            {"role": "user", "content": content},  
+        ],
+    )
+
+    raw = response.choices[0].message.content.strip()
+    raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
+
+    return json.loads(raw)
+
+
