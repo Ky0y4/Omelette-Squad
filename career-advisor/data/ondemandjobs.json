@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "country": "Malaysia",
+    "year": 2024,
+    "source": "Department of Statistics Malaysia",
+    "summary": {
+      "total_graduates": 5980000,
+      "unemployment_rate": 3.2,
+      "median_salary": 4521,
+      "mean_salary": 5330,
+      "degree_median_salary": 5724,
+      "diploma_median_salary": 3390
+    }
+  },
+  "careers": [
+    {
+      "title": "Software Developer",
+      "category": "New",
+      "demand_signal": "Rapidly increasing demand",
+      "top_sectors": ["Technology", "AI", "FinTech", "Startups"],
+      "future_skills": ["Programming", "AI literacy", "System design", "Problem-solving"],
+      "employer_strategies": ["Aggressive hiring", "Upskilling workforce"],
+      "insights": {
+        "job_outlook": "High growth driven by digital transformation",
+        "salary_potential": "High (above RM5724 median for degree holders)",
+        "risk_level": "Low"
+      },
+      "student_advice": {
+        "best_for": ["Computer Science students", "Logical thinkers", "Problem solvers"],
+        "next_steps": ["Build coding projects", "Learn Python/JavaScript", "Do internships", "Contribute to GitHub"]
+      }
+    },
+    {
+      "title": "Data Analyst",
+      "category": "New",
+      "demand_signal": "Rapidly increasing demand",
+      "top_sectors": ["Finance", "Technology", "Consulting"],
+      "future_skills": ["Data analysis", "SQL", "Visualization", "Statistics"],
+      "employer_strategies": ["Aggressive hiring", "Training programs"],
+      "insights": {
+        "job_outlook": "Growing demand due to data-driven decision making",
+        "salary_potential": "Above average",
+        "risk_level": "Low"
+      },
+      "student_advice": {
+        "best_for": ["Analytical thinkers", "Math-oriented students"],
+        "next_steps": ["Learn Excel & SQL", "Practice with datasets", "Build dashboards"]
+      }
+    },
+    {
+      "title": "Business Services Manager",
+      "category": "Persistent",
+      "demand_signal": "High job security and steady demand",
+      "top_sectors": ["Consulting", "Finance", "Corporate"],
+      "future_skills": ["Leadership", "Strategic thinking", "Communication", "Data analysis"],
+      "employer_strategies": ["Expanding local recruitment", "Raising wages"],
+      "insights": {
+        "job_outlook": "Stable long-term demand",
+        "salary_potential": "High with experience",
+        "risk_level": "Low"
+      },
+      "student_advice": {
+        "best_for": ["Business students", "Leaders"],
+        "next_steps": ["Take leadership roles", "Learn analytics tools", "Gain corporate experience"]
+      }
+    },
+    {
+      "title": "Mechanical Engineer",
+      "category": "Standard Critical",
+      "demand_signal": "High demand due to skill shortages",
+      "top_sectors": ["Manufacturing", "Engineering", "Construction"],
+      "future_skills": ["Technical design", "CAD", "Problem-solving"],
+      "employer_strategies": ["Training programs", "Talent retention"],
+      "insights": {
+        "job_outlook": "Stable demand with industrial growth",
+        "salary_potential": "Moderate to high",
+        "risk_level": "Medium"
+      },
+      "student_advice": {
+        "best_for": ["Engineering students"],
+        "next_steps": ["Learn CAD tools", "Do industrial internships"]
+      }
+    },
+    {
+      "title": "Healthcare Professional",
+      "category": "Persistent",
+      "demand_signal": "High job security and steady demand",
+      "top_sectors": ["Healthcare", "Hospitals", "Public Health"],
+      "future_skills": ["Patient care", "Medical knowledge", "Technology usage"],
+      "employer_strategies": ["Hiring expansion", "Upskilling"],
+      "insights": {
+        "job_outlook": "Consistent demand due to aging population",
+        "salary_potential": "Stable",
+        "risk_level": "Low"
+      },
+      "student_advice": {
+        "best_for": ["Biology students", "Care-oriented individuals"],
+        "next_steps": ["Medical training", "Clinical experience"]
+      }
+    },
+    {
+      "title": "Construction Project Manager",
+      "category": "Standard Critical",
+      "demand_signal": "High demand due to infrastructure development",
+      "top_sectors": ["Construction", "Engineering"],
+      "future_skills": ["Project management", "Budgeting", "Leadership"],
+      "employer_strategies": ["Training programs", "Local hiring"],
+      "insights": {
+        "job_outlook": "Strong demand with national development",
+        "salary_potential": "High",
+        "risk_level": "Medium"
+      },
+      "student_advice": {
+        "best_for": ["Engineering", "Construction students"],
+        "next_steps": ["Learn project tools", "Get site experience"]
+      }
+    },
+    {
+      "title": "Manufacturing Operator",
+      "category": "Persistent",
+      "demand_signal": "Steady demand",
+      "top_sectors": ["Manufacturing", "Logistics"],
+      "future_skills": ["Machine operation", "Maintenance", "Safety compliance"],
+      "employer_strategies": ["Upskilling workforce", "Retention strategies"],
+      "insights": {
+        "job_outlook": "Stable but automation risk exists",
+        "salary_potential": "Moderate",
+        "risk_level": "Medium"
+      },
+      "student_advice": {
+        "best_for": ["TVET students"],
+        "next_steps": ["Learn technical skills", "Get certifications"]
+      }
+    },
+    {
+      "title": "Digital Marketing Specialist",
+      "category": "New",
+      "demand_signal": "Increasing demand",
+      "top_sectors": ["E-commerce", "Marketing", "Startups"],
+      "future_skills": ["SEO", "Content creation", "Analytics"],
+      "employer_strategies": ["Aggressive hiring", "Upskilling"],
+      "insights": {
+        "job_outlook": "Growing due to online business expansion",
+        "salary_potential": "Moderate to high",
+        "risk_level": "Low"
+      },
+      "student_advice": {
+        "best_for": ["Creative students", "Business students"],
+        "next_steps": ["Build portfolio", "Run campaigns", "Learn SEO tools"]
+      }
+    }
+  ]
+}

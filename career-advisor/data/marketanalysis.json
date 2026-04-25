@@ -1,0 +1,72 @@
+{
+  "country": "Malaysia",
+  "year": 2024,
+  "overview": {
+    "total_graduates": 5980000,
+    "growth_rate_percent": 4.1,
+    "labour_force": 5140000,
+    "outside_labour_force": 838800,
+    "GLFPR_percent": 86.0,
+    "graduate_unemployment_rate_percent": 3.2,
+    "previous_unemployment_rate_percent": 3.4
+  },
+  "gender_participation": {
+    "male_GLFPR_percent": 89.0,
+    "female_GLFPR_percent": 83.4,
+    "insight": "Gender participation gap is narrowing, indicating improved inclusivity in the workforce."
+  },
+  "salary_data": {
+    "mean_monthly_salary_RM": 5330,
+    "median_monthly_salary_RM": 4521,
+    "degree_holder_median_salary_RM": 5724,
+    "diploma_holder_median_salary_RM": 3390,
+    "insight": "Higher education level correlates with higher earnings, reinforcing the value of degree qualifications."
+  },
+  "trends": {
+    "employment_trend": "increasing",
+    "unemployment_trend": "decreasing",
+    "salary_trend": "increasing",
+    "labour_market_condition": "stable_and_resilient"
+  },
+  "drivers_of_growth": [
+    "Government policies on human capital development",
+    "Improved alignment between education and industry needs",
+    "Expansion of job opportunities across sectors",
+    "Focus on employability and skill development"
+  ],
+  "future_focus": [
+    "AI-based learning tools",
+    "Skills alignment with labour market demand",
+    "Innovation-driven economic growth",
+    "Highly skilled workforce development"
+  ],
+  "student_insights": [
+    {
+      "insight": "Graduates have a high chance of employment due to a low unemployment rate (3.2%).",
+      "recommendation": "Focus on gaining practical skills and internships to stay competitive."
+    },
+    {
+      "insight": "Degree holders earn significantly more than diploma holders.",
+      "recommendation": "Consider pursuing a degree or higher qualifications if financially and academically feasible."
+    },
+    {
+      "insight": "Labour force participation is high (86%), meaning most graduates are working or seeking work.",
+      "recommendation": "Prepare early by building a strong CV, portfolio, and networking before graduation."
+    },
+    {
+      "insight": "The gender gap in employment is decreasing.",
+      "recommendation": "All students should confidently pursue careers in any field without gender limitations."
+    },
+    {
+      "insight": "AI and technology are becoming important in the future workforce.",
+      "recommendation": "Learn AI, data analysis, or digital skills to increase employability."
+    }
+  ],
+  "career_advisor_rules": {
+    "if_student_has_degree": "Recommend higher-paying roles and specialization.",
+    "if_student_has_diploma": "Suggest upskilling, certifications, or degree pathways.",
+    "if_student_lacks_skills": "Recommend internships, projects, and technical skill development.",
+    "if_student_interest_in_tech": "Strongly recommend AI, programming, and data-related careers.",
+    "if_student_uncertain": "Suggest career exploration tools, personality assessments, and industry research."
+  }
+}
