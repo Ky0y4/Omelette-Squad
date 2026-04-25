@@ -10,7 +10,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleAnalyze = async (userProfile) => {
+  // Added 'file = null' to the parameters
+  const handleAnalyze = async (userProfile, file = null) => {
     setIsLoading(true);
     setError(null);
     setResults(null);
@@ -19,6 +20,11 @@ export default function Home() {
       const formData = new FormData();
       formData.append("description", userProfile.description);
       formData.append("timestamp", userProfile.timestamp);
+      
+      // If a file is provided, append it to the form data
+      if (file) {
+        formData.append("file", file);
+      }
 
       const response = await fetch("http://localhost:8000/analyze", {
         method: "POST",

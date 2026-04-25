@@ -25,12 +25,16 @@ app.add_middleware(
 class UserProfile(BaseModel):
     description: str
     timestamp: str
+    budget_constraint: str = "medium"
+    risk_tolerance: str = "low"
 
 
 @app.post("/analyze")
 async def analyze_career(
     description: str = Form(...),
     timestamp: str = Form(...),
+    budget_constraint: str = Form("medium"),
+    risk_tolerance: str = Form("low"),
     file: UploadFile = File(None),
 ):
     print(f"I RECEIVED DA DATA: {description[:100]}")
@@ -57,7 +61,12 @@ async def analyze_career(
     if extra:
         full_description += f"\n\n=== ADDITIONAL CONTEXT FROM UPLOADED DOCUMENT ===\n{extra[:3000]}"
 
-    profile = UserProfile(description=full_description, timestamp=timestamp)
+    profile = UserProfile(
+        description=full_description,
+        timestamp=timestamp,
+        budget_constraint=budget_constraint,
+        risk_tolerance=risk_tolerance,
+    )
 
     try:
         result = await get_response(profile)
@@ -71,14 +80,25 @@ async def analyze_career(
 async def get_response(profile: UserProfile) -> dict:
     print("GENERATING RESPONSE TIME")
 
-    market_summary     = json.dumps(DATASETS.get('marketanalysis.json', {}))[:2000]
-    careers_summary    = json.dumps(DATASETS.get('careers.json', {}))[:2000]
-    skills_summary     = json.dumps(DATASETS.get('skillmapping.json', {}))[:1500]
-    demand_summary     = json.dumps(DATASETS.get('ondemandjobs.json', {}))[:1500]
-    workforce_summary  = json.dumps(DATASETS.get('workforce.json', {}))[:1000]
-    graduatestats      = json.dumps(DATASETS.get('graduatestats.json', {}))[:1000]
-    courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []))[:1000]
-    job_summary        = json.dumps(DATASETS.get('job.csv', []))[:1000]
+    market_summary     = json.dumps(DATASETS.get('marketanalysis.json', {}))
+    careers_summary    = json.dumps(DATASETS.get('careers.json', {}))
+    skills_summary     = json.dumps(DATASETS.get('skillmapping.json', {}))
+    demand_summary     = json.dumps(DATASETS.get('ondemandjobs.json', {}))
+    workforce_summary  = json.dumps(DATASETS.get('workforce.json', {}))
+    graduatestats      = json.dumps(DATASETS.get('graduatestats.json', {}))
+    courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []))
+    job_summary        = json.dumps(DATASETS.get('job.csv', []))
+
+    course_records = DATASETS.get('courseinfo.csv', [])
+    max_cost = 0
+    for row in course_records:
+        fee = row.get('Local Fee per Year (MYR)') if isinstance(row, dict) else None
+        try:
+            if fee is not None and fee != "":
+                cost = float(fee)
+                max_cost = max(max_cost, cost)
+        except Exception:
+            continue
 
     client = OpenAI(
         api_key=os.getenv("ZAI_API_KEY"),
@@ -87,48 +107,65 @@ async def get_response(profile: UserProfile) -> dict:
     )
 
     content = f"""
-    You are a Decision Intelligence System. Always respond with valid JSON only.
+    You are a context-aware Mathematical Decision Intelligence System.
+    Always respond with valid JSON only. Do not include markdown, code fences, or any explanation outside the JSON.
 
-    You have access to these market datasets. You MUST reference the provided datasets as you analyze the profile.
-    - MyCOL 2024/25 workforce criticality and role safety data: {workforce_summary}
-    - DOSM 2024 median salary and regional wage data: {market_summary}
-    - FSF 2025 future skills and skill-up recommendation data: {skills_summary}
-    - In-demand jobs: {demand_summary}
-    - Career paths: {careers_summary}
+    You have access to the following datasets:
+    - Workforce intelligence model: {workforce_summary}
+    - Market analysis and salary trends: {market_summary}
+    - Course information and fees: {courseinfo_summary}
     - Graduate statistics: {graduatestats}
-    - Course information: {courseinfo_summary}
-    - Job information: {job_summary}
+    - Future skills mapping: {skills_summary}
+    - In-demand job signals: {demand_summary}
+    - Career path descriptions: {careers_summary}
+    - Job meta information: {job_summary}
 
-    Given this person's profile: {profile.description}
+    For every recommended career, calculate these values using dataset information. Use median entry salary from workforce data as starting_salary, employment_rate_6_months as employment_probability, and any automation or role safety indicator available from the workforce model.
+    - Annual Salary = starting_salary * 125
+    - 5-Year Earnings = annual_salary * 5 * (1 + salary_growth_rate)
+    - ROE = (5_year_earnings - education_cost) / education_cost
+    - Break-Even Years = education_cost / annual_salary
+    - Financial Score = (ROE * 0.30) + (salary_growth_rate * 0.20) + (employment_probability * 0.20) + ((1 - automation_risk) * 0.15) + ((1 / break_even_years) * 0.15)
+    - Final Score = (Financial Score * 0.6) + (Personal Fit Score * 0.4)
 
-    Give concise recommendations and justify them with the data.
-    Use the provided datasets to support:
-    - the criticality and safety of the recommended role,
-    - the median salary and regional economic signal,
-    - a concrete skill-up recommendation,
-    - the impact of those skills on career risk, salary, and growth.
+    Apply these policy rules:
+    - If budget_constraint == "low", subtract (education_cost / {max_cost}) * 0.2 from Final Score.
+    - If break_even_years > 5, subtract 0.15 from Final Score.
+    - Add tag "High Return Career" when ROE > 3.
+    - Add tag "Fast Payback" when break_even_years < 2.
+    - Add warning "High financial risk" when calculated risk > 0.6.
+    - Add warning "Potential debt trap" when education_cost > 50000 and starting_salary is low.
 
-    Respond ONLY with a valid JSON object — no markdown, no explanation, no code fences.
-    Follow this exact structure:
+    Weight this recommendation for Economic Empowerment. In the "why_it_fits" section, explain how the career reduces the risk of skill-related underemployment and balances the user's financial constraints with market ROI.
+    Mention that this system is performing context-aware reasoning by weighing the user's budget, risk tolerance, and market ROI.
 
+    User profile:
+    {profile.description}
+    Budget constraint: {profile.budget_constraint}
+    Risk tolerance: {profile.risk_tolerance}
+
+    Return JSON in this exact structure only:
     {{
-        "summary": "...",
-        "top_careers": [
-            {{
-                "role": "...",
-                "match_score": 90,
-                "why_it_fits": "...",
-                "trade_offs": "...",
-                "next_steps": "...",
-                "market_reality": "Detail the role criticality and safety based on the MyCOL/workforce data.",
-                "economic_forecast": "Provide the median salary and regional data based on the DOSM/wage data.",
-                "optimization_strategy": "Provide a skill-up recommendation based on the FSF/future skills data.",
-                "decision_impact": "Explain how adding these skills impacts their career, salary, or risk."
-            }}
-        ]
+      "summary": "...",
+      "top_careers": [
+        {{
+          "role": "...",
+          "match_score": 0,
+          "final_score": 0,
+          "roe_percentage": 0,
+          "break_even_years": 0,
+          "financial_tags": ["..."],
+          "risk_warnings": ["..."],
+          "why_it_fits": "...",
+          "trade_offs": "...",
+          "next_steps": "...",
+          "market_reality": "...",
+          "economic_forecast": "...",
+          "optimization_strategy": "...",
+          "decision_impact": "..."
+        }}
+      ]
     }}
-
-    You can include more or fewer careers depending on what fits this person.
     """
 
     response = client.chat.completions.create(
@@ -138,6 +175,7 @@ async def get_response(profile: UserProfile) -> dict:
             {"role": "user", "content": content},
         ],
     )
+
 
     try:
         raw = response.choices[0].message.content.strip()
