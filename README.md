@@ -1,7 +1,7 @@
 # Video Presentation
 https://drive.google.com/file/d/1iW3hSDBg0Ml8gpB7dyaxM6EQcdsSnEdY/view?usp=sharing
 
-# Omelette Squad — Career Decision Intelligence Advisor
+# E.G.G (EMPLOYMENT GUIDANCE GENERATOR)
 
 An AI-powered career advisor that cross-references your personal profile against real Malaysian market data to deliver data-backed career recommendations — not generic advice.
 
