@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import UserForm from "@/components/UserForm";
-import ResultsPanel from "@/components/ResultsPanel";
+// Assuming you have a ResultsPanel component
+import ResultsPanel from "@/components/ResultsPanel"; 
 import "./page.css";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleAnalyze = async (userProfile) => {
+  const handleAnalyze = async (userProfile, file = null) => {
     setIsLoading(true);
     setError(null);
     setResults(null);
@@ -19,8 +20,13 @@ export default function Home() {
       const formData = new FormData();
       formData.append("description", userProfile.description);
       formData.append("timestamp", userProfile.timestamp);
+      // Now receiving these correctly from UserForm
       formData.append("budget_constraint", userProfile.budgetConstraint);
       formData.append("risk_tolerance", userProfile.riskTolerance);
+      
+      if (file) {
+        formData.append("file", file);
+      }
 
       const response = await fetch("http://localhost:8000/analyze", {
         method: "POST",
@@ -33,7 +39,7 @@ export default function Home() {
           const errData = await response.json();
           detail = errData?.detail || detail;
         } catch {
-          // Ignore JSON parsing errors and keep fallback message.
+          // Ignore JSON parsing errors
         }
         throw new Error(detail);
       }

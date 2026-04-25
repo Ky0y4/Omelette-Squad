@@ -75,8 +75,26 @@ export default function UserForm({ onAnalyze }) {
     riskTolerance: 'low',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [file, setFile] = useState(null);
 
   const handleChange = (id, val) => setValues((v) => ({ ...v, [id]: val }));
+
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (!selected) return;
+    const ext = selected.name.split('.').pop().toLowerCase();
+    if (!['pdf', 'docx'].includes(ext)) {
+      alert('Only PDF and DOCX files are supported');
+      e.target.value = '';
+      return;
+    }
+    setFile(selected);
+  };
+
+  const handleRemoveFile = () => {
+    setFile(null);
+    document.getElementById('file-upload').value = '';
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,15 +107,19 @@ export default function UserForm({ onAnalyze }) {
 
     setIsSubmitting(true);
 
-    const description = FIELDS.map((f) => `${f.label}: ${values[f.id].trim()}.`).join(' ');
+    const description = FIELDS
+      .filter(f => f.type !== 'select') 
+      .map((f) => `${f.label}: ${values[f.id].trim()}.`)
+      .join(' ');
 
     try {
-      await onAnalyze({
-        description,
+      // FIX: Ensure budgetConstraint and riskTolerance are passed out of the form
+      await onAnalyze({ 
+        description, 
         timestamp: new Date().toISOString(),
         budgetConstraint: values.budgetConstraint,
-        riskTolerance: values.riskTolerance,
-      });
+        riskTolerance: values.riskTolerance
+      }, file);
     } catch (err) {
       console.error('Submission error:', err);
       alert('An error occurred. Please try again.');
@@ -159,6 +181,40 @@ export default function UserForm({ onAnalyze }) {
             )}
           </div>
         ))}
+
+        <div className="form-field">
+          <div className="field-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <label htmlFor="file-upload">Upload Resume or CV</label>
+            <span className="optional-badge">Optional</span>
+          </div>
+          <span className="field-hint">PDF or DOCX format. Helps our AI extract deeper context.</span>
+          
+          <input
+            id="file-upload"
+            type="file"
+            accept=".pdf,.docx"
+            onChange={handleFileChange}
+            className="file-input-hidden"
+          />
+
+          {!file ? (
+            <label htmlFor="file-upload" className="custom-file-upload">
+              <span className="upload-icon">📄</span>
+              <span>Click to select a file</span>
+            </label>
+          ) : (
+            <div className="file-preview">
+              <span className="file-name">📄 {file.name}</span>
+              <button
+                type="button"
+                className="remove-file-btn"
+                onClick={handleRemoveFile}
+              >
+                ✕ Remove
+              </button>
+            </div>
+          )}
+        </div>
 
         <hr className="form-divider" />
 

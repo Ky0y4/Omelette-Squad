@@ -30,7 +30,6 @@ class UserProfile(BaseModel):
     budget_constraint: str = "medium"
     risk_tolerance: str = "low"
 
-
 @app.post("/analyze")
 async def analyze_career(
     description: str = Form(...),
@@ -165,17 +164,13 @@ async def get_response(profile: UserProfile) -> dict:
     """
 
     try:
-        # Initialize the Gemini model (gemini-1.5-flash is excellent for fast, free-tier JSON tasks)
         model = genai.GenerativeModel(
             model_name="gemini-3-flash-preview",
             system_instruction="You are a Decision Intelligence System. Always respond with valid JSON only.",
-            generation_config={"response_mime_type": "application/json"} # Forces strict JSON output
+            generation_config={"response_mime_type": "application/json"}
         )
 
-        # Await the async generation call
         response = await model.generate_content_async(content)
-
-        # With response_mime_type="application/json", it guarantees JSON text without markdown wrappers
         raw = response.text.strip()
         print(f"RAW RESPONSE: {raw[:500]}")
         
