@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from openai import OpenAI
@@ -7,6 +7,10 @@ import os
 import json
 import re
 from loadData import DATASETS
+from readFiles import readPDF, readDOCX
+import httpx
+import google.generativeai as genai
+from google.ai.generativelanguage_v1beta.types import content
 
 load_dotenv()
 
@@ -24,36 +28,67 @@ class UserProfile(BaseModel):
     description: str
     timestamp: str
 
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 @app.post("/analyze")
-async def analyze_career(profile: UserProfile):
-    print(f"I RECEIVED DA DATA: {profile.description[:100]}")
+async def analyze_career(
+    description: str = Form(...),
+    timestamp: str = Form(...),
+    file: UploadFile = File(None),
+):
+    print(f"I RECEIVED DA DATA: {description[:100]}")
+
+    extra = ""
+    if file and file.filename:
+        file_bytes = await file.read()
+        filename = file.filename.lower()
+        try:
+            if filename.endswith(".pdf"):
+                extra = readPDF(file_bytes)
+                print(f"PDF extracted: {len(extra)} chars")
+            elif filename.endswith(".docx"):
+                extra = readDOCX(file_bytes)
+                print(f"DOCX extracted: {len(extra)} chars")
+            else:
+                raise HTTPException(status_code=400, detail="Only PDF and DOCX files are supported")
+        except HTTPException:
+            raise
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Could not read file: {e}")
+
+    full_description = description
+    if extra:
+        full_description += f"\n\n=== ADDITIONAL CONTEXT FROM UPLOADED DOCUMENT ===\n{extra[:3000]}"
+
+    profile = UserProfile(description=full_description, timestamp=timestamp)
+
     try:
         result = await get_response(profile)
         return result
     except Exception as e:
         import traceback
         print(f"FULL ERROR: {e}")
-        print(traceback.format_exc())  
+        print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
 
 async def get_response(profile: UserProfile) -> dict:
     print("GENERATING RESPONSE TIME")
 
-    market_summary = json.dumps(DATASETS.get('marketanalysis.json', {}), indent=None)
-    careers_summary = json.dumps(DATASETS.get('careers.json', {}), indent=None)
-    skills_summary = json.dumps(DATASETS.get('skillmapping.json', {}), indent=None)
-    demand_summary = json.dumps(DATASETS.get('ondemandjobs.json', {}), indent=None)
-    workforce_summary = json.dumps(DATASETS.get('workforce.json', {}), indent=None)
-    graduatestats = json.dumps(DATASETS.get('graduatestats.json', {}), indent=None)
-    courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []), indent=None)
-    job_summary = json.dumps(DATASETS.get('job.csv', []), indent=None)
-
+    market_summary     = json.dumps(DATASETS.get('marketanalysis.json', {}))[:2000]
+    careers_summary    = json.dumps(DATASETS.get('careers.json', {}))[:2000]
+    skills_summary     = json.dumps(DATASETS.get('skillmapping.json', {}))[:1500]
+    demand_summary     = json.dumps(DATASETS.get('ondemandjobs.json', {}))[:1500]
+    workforce_summary  = json.dumps(DATASETS.get('workforce.json', {}))[:1000]
+    graduatestats      = json.dumps(DATASETS.get('graduatestats.json', {}))[:1000]
+    courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []))[:1000]
+    job_summary        = json.dumps(DATASETS.get('job.csv', []))[:1000]
 
     client = OpenAI(
         api_key=os.getenv("ZAI_API_KEY"),
         base_url="https://api.ilmu.ai/v1",
+        http_client=httpx.Client(timeout=120.0)
     )
-    
+
     content = f"""
     You are a Decision Intelligence System. Always respond with valid JSON only.
 
@@ -88,7 +123,7 @@ async def get_response(profile: UserProfile) -> dict:
                 "why_it_fits": "...",
                 "trade_offs": "...",
                 "next_steps": "...",
-                "market_reality": "Detail the role's criticality and safety based on the MyCOL/workforce data.",
+                "market_reality": "Detail the role criticality and safety based on the MyCOL/workforce data.",
                 "economic_forecast": "Provide the median salary and regional data based on the DOSM/wage data.",
                 "optimization_strategy": "Provide a skill-up recommendation based on the FSF/future skills data.",
                 "decision_impact": "Explain how adding these skills impacts their career, salary, or risk."
@@ -103,14 +138,14 @@ async def get_response(profile: UserProfile) -> dict:
         model="ilmu-glm-5.1",
         messages=[
             {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
-            {"role": "user", "content": content},  
+            {"role": "user", "content": content},
         ],
     )
 
     try:
         raw = response.choices[0].message.content.strip()
         raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
-        print(f"RAW RESPONSE: {raw[:500]}")  
+        print(f"RAW RESPONSE: {raw[:500]}")
         return json.loads(raw)
     except json.JSONDecodeError as e:
         print(f"JSON PARSE FAILED: {e}")
@@ -121,4 +156,3 @@ async def get_response(profile: UserProfile) -> dict:
         print(f"GET_RESPONSE ERROR: {e}")
         print(traceback.format_exc())
         raise
-
