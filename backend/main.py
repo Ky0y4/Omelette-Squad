@@ -29,6 +29,7 @@ async def analyze_career(profile: UserProfile):
     print(f"I RECEIVED DA DATA: {profile.description}")
     try:
         result = await get_response(profile)
+        print(result)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
