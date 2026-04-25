@@ -1,0 +1,189 @@
+{
+    "metadata": {
+        "title": "Malaysia Career Decision Intelligence Dataset 2025",
+        "sources": [
+            "DOSM Graduates Statistics 2020-2024",
+            "MyMahir MyCOL 2024/2025",
+            "Future Skills Framework 2025"
+        ],
+        "scope": "5-Year Trends, Regional Benchmarks, Skill Optimization"
+    },
+    "national_economic_trends": [
+        {
+            "year": 2020,
+            "total_graduates_mil": 5.36,
+            "median_salary_rm": 4489,
+            "unemployment_rate_pct": 4.4,
+            "degree_median_rm": 5431,
+            "diploma_median_rm": 3312
+        },
+        {
+            "year": 2021,
+            "total_graduates_mil": 5.61,
+            "median_salary_rm": 4111,
+            "unemployment_rate_pct": 4.1,
+            "degree_median_rm": 5000,
+            "diploma_median_rm": 3000
+        },
+        {
+            "year": 2022,
+            "total_graduates_mil": 5.92,
+            "median_salary_rm": 4627,
+            "unemployment_rate_pct": 3.7,
+            "degree_median_rm": 5645,
+            "diploma_median_rm": 3420
+        },
+        {
+            "year": 2023,
+            "total_graduates_mil": 5.74,
+            "median_salary_rm": 4521,
+            "unemployment_rate_pct": 3.4,
+            "degree_median_rm": 5724,
+            "diploma_median_rm": 3390
+        },
+        {
+            "year": 2024,
+            "total_graduates_mil": 5.98,
+            "median_salary_rm": 4521,
+            "unemployment_rate_pct": 3.2,
+            "degree_median_rm": 5724,
+            "diploma_median_rm": 3390
+        }
+    ],
+    "regional_benchmarks_2024": {
+        "Kuala Lumpur": {
+            "median_salary_rm": 5888,
+            "high_demand_sectors": [
+                "ICT",
+                "Finance",
+                "Services"
+            ],
+            "living_cost_index": "High"
+        },
+        "Putrajaya": {
+            "median_salary_rm": 5723,
+            "high_demand_sectors": [
+                "Public Administration",
+                "Professional Services"
+            ],
+            "living_cost_index": "High"
+        },
+        "Selangor": {
+            "median_salary_rm": 5207,
+            "high_demand_sectors": [
+                "Manufacturing",
+                "Logistics",
+                "Digital"
+            ],
+            "living_cost_index": "High"
+        },
+        "Penang": {
+            "median_salary_rm": 4350,
+            "high_demand_sectors": [
+                "Semiconductors",
+                "Electrical & Electronics"
+            ],
+            "living_cost_index": "Medium"
+        },
+        "Johor": {
+            "median_salary_rm": 4400,
+            "high_demand_sectors": [
+                "Manufacturing",
+                "Petrochemical",
+                "Logistics"
+            ],
+            "living_cost_index": "Medium-High"
+        },
+        "Sarawak": {
+            "median_salary_rm": 3800,
+            "high_demand_sectors": [
+                "Energy",
+                "Agriculture",
+                "Construction"
+            ],
+            "living_cost_index": "Medium"
+        },
+        "Sabah": {
+            "median_salary_rm": 3500,
+            "high_demand_sectors": [
+                "Tourism",
+                "Agriculture",
+                "Services"
+            ],
+            "living_cost_index": "Medium"
+        }
+    },
+    "critical_occupations_2025": [
+        {
+            "title": "Software Developer",
+            "category": "ICT",
+            "status": "Persistent Shortage",
+            "regions": [
+                "Central",
+                "Northern"
+            ],
+            "entry_salary_est": 4500
+        },
+        {
+            "title": "Mechanical Engineer",
+            "category": "Engineering",
+            "status": "High Demand",
+            "regions": [
+                "Northern",
+                "Southern"
+            ],
+            "entry_salary_est": 3800
+        },
+        {
+            "title": "Specialist Medical Practitioner",
+            "category": "Healthcare",
+            "status": "Critical",
+            "regions": [
+                "National"
+            ],
+            "entry_salary_est": 6000
+        },
+        {
+            "title": "Data Professional",
+            "category": "Digital",
+            "status": "High Growth",
+            "regions": [
+                "Central"
+            ],
+            "entry_salary_est": 5000
+        },
+        {
+            "title": "Finance Manager",
+            "category": "Management",
+            "status": "Persistent Shortage",
+            "regions": [
+                "Central"
+            ],
+            "entry_salary_est": 7500
+        }
+    ],
+    "future_skills_framework": {
+        "digital_skills": [
+            "AI & Machine Learning",
+            "Data Analytics",
+            "Cyber Security",
+            "Digital Literacy"
+        ],
+        "human_centric_skills": [
+            "Adaptability",
+            "Empathy",
+            "Collaboration",
+            "Communication"
+        ],
+        "economic_multipliers": {
+            "AI_Skill_Premium": 0.2,
+            "Leadership_Skill_Premium": 0.15,
+            "Green_Skills_Premium": 0.1
+        }
+    },
+    "decision_logic": {
+        "underemployment_threshold_pct": 32.2,
+        "recommended_pivot_strategy": "If salary < median AND role != critical, then upskill in FSF Digital cluster.",
+        "growth_projection_formula": "Current_Salary * (1 + Regional_Growth_Rate + Skill_Premium)"
+    }
+}
