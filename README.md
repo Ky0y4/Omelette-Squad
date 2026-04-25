@@ -28,7 +28,7 @@ Each recommendation includes a match score, financial ROI calculation, break-eve
 |---|---|
 | Frontend | Next.js 15, React 18 |
 | Backend | FastAPI, Python 3.11 |
-| AI | Google Gemini (`gemini-2.0-flash`) |
+| AI | Z AI (`ilmu-glm-5.1`) |
 | File Parsing | PyMuPDF (PDF), python-docx (DOCX) |
 | Containerisation | Docker, Docker Compose |
 
@@ -71,7 +71,7 @@ Omelette-Squad/
 ### Prerequisites
 
 - [Docker](https://www.docker.com/) and Docker Compose installed
-- A [Google Gemini API key](https://aistudio.google.com/app/apikey)
+- A Z AI API KEY
 
 ### 1. Clone the repo
 
@@ -85,7 +85,7 @@ cd Omelette-Squad
 Create `backend/.env`:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+ZAI_API_KEY=...
 ```
 
 A template is provided at `.env_example`.
