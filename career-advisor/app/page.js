@@ -9,28 +9,33 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleAnalyze = async (userProfile) => {
+  const handleAnalyze = async (userProfile, file = null) => {
     setIsLoading(true);
     setError(null);
     setResults(null);
 
     try {
+      const formData = new FormData();
+      formData.append("description", userProfile.description);
+      formData.append("timestamp", userProfile.timestamp);
+      if (file) {
+        formData.append("file", file);
+      }
+
       const response = await fetch("http://localhost:8000/analyze", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userProfile),
+        body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("The python there dk why returned an error");
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.detail || "Backend returned an error");
       }
 
       const data = await response.json();
       setResults(data);
     } catch (err) {
-      setError(err.message || "Check if python is running on port 8000");
+      setError(err.message || "Check if the backend is running on port 8000");
     } finally {
       setIsLoading(false);
     }
@@ -45,14 +50,14 @@ export default function Home() {
   return (
     <div className="app">
       <header className="header">
-        <h1> Omelette Squad Career Decision Intelligence Advisor</h1>
+        <h1>Omelette Squad Career Decision Intelligence Advisor</h1>
         <p>Discover your ideal career path with AI-powered insights</p>
       </header>
 
       <main className="main-content">
         {error && (
           <div className="error-message">
-            <h3> Error</h3>
+            <h3>Error</h3>
             <p>{error}</p>
             <button onClick={handleReset} className="retry-btn">
               Try Again
@@ -85,7 +90,7 @@ export default function Home() {
       </main>
 
       <footer className="footer">
-        <p> Career Intelligence Advisor • Hackathon 2026</p>
+        <p>Career Intelligence Advisor • Hackathon 2026</p>
       </footer>
     </div>
   );
