@@ -1,0 +1,197 @@
+{
+  "purpose": "Help students choose cost-effective, future-proof career paths using skills, labour market trends, and risk analysis",
+
+  "career_categories": [
+    "Technology",
+    "Business and Finance",
+    "Healthcare",
+    "Engineering",
+    "Education",
+    "Arts and Creative",
+    "Trades and Vocational",
+    "Public Services"
+  ],
+
+  "skills_framework": {
+    "technical_skills": [
+      "Digital Literacy",
+      "Data Analytics",
+      "Software Development",
+      "User Experience",
+      "AI and Machine Learning",
+      "Cyber Security",
+      "Agile"
+    ],
+    "behavioural_skills": [
+      "Creative Thinking",
+      "Coaching",
+      "Empathy",
+      "Adaptability",
+      "Relationship Management",
+      "Teamwork"
+    ]
+  },
+
+  "career_skill_mapping": {
+    "Technology": {
+      "core_skills": ["Software Development", "AI and Machine Learning", "Data Analytics"],
+      "support_skills": ["Agile", "Digital Literacy", "Adaptability"]
+    },
+    "Business and Finance": {
+      "core_skills": ["Data Analytics", "Digital Literacy"],
+      "support_skills": ["Relationship Management", "Agile", "Creative Thinking"]
+    },
+    "Healthcare": {
+      "core_skills": ["Empathy", "Adaptability"],
+      "support_skills": ["Digital Literacy", "Teamwork"]
+    },
+    "Engineering": {
+      "core_skills": ["Software Development", "Data Analytics"],
+      "support_skills": ["Creative Thinking", "Adaptability"]
+    },
+    "Education": {
+      "core_skills": ["Coaching", "Empathy"],
+      "support_skills": ["Digital Literacy", "Teamwork"]
+    },
+    "Arts and Creative": {
+      "core_skills": ["Creative Thinking"],
+      "support_skills": ["Digital Literacy", "Adaptability"]
+    },
+    "Trades and Vocational": {
+      "core_skills": ["Adaptability"],
+      "support_skills": ["Teamwork", "Problem Solving"]
+    },
+    "Public Services": {
+      "core_skills": ["Empathy", "Relationship Management"],
+      "support_skills": ["Teamwork", "Adaptability"]
+    }
+  },
+
+  "career_outcomes": {
+    "Technology": {
+      "salary_level": "high",
+      "job_demand": "very_high",
+      "risk_level": "low",
+      "examples": ["Software Engineer", "Data Scientist", "AI Engineer"]
+    },
+    "Business and Finance": {
+      "salary_level": "medium_high",
+      "job_demand": "high",
+      "risk_level": "medium",
+      "examples": ["Business Analyst", "Accountant", "Consultant"]
+    },
+    "Healthcare": {
+      "salary_level": "medium_high",
+      "job_demand": "very_high",
+      "risk_level": "low",
+      "examples": ["Doctor", "Nurse", "Therapist"]
+    },
+    "Engineering": {
+      "salary_level": "high",
+      "job_demand": "high",
+      "risk_level": "low",
+      "examples": ["Civil Engineer", "Mechanical Engineer"]
+    },
+    "Education": {
+      "salary_level": "medium",
+      "job_demand": "stable",
+      "risk_level": "low",
+      "examples": ["Teacher", "Lecturer"]
+    },
+    "Arts and Creative": {
+      "salary_level": "variable",
+      "job_demand": "low_to_medium",
+      "risk_level": "high",
+      "examples": ["Designer", "Animator", "Artist"]
+    },
+    "Trades and Vocational": {
+      "salary_level": "medium",
+      "job_demand": "high",
+      "risk_level": "low",
+      "examples": ["Electrician", "Plumber", "Technician"]
+    },
+    "Public Services": {
+      "salary_level": "medium",
+      "job_demand": "stable",
+      "risk_level": "low",
+      "examples": ["Police", "Government Officer"]
+    }
+  },
+
+  "future_trends": {
+    "high_growth_skills": [
+      "AI and Machine Learning",
+      "Data Analytics",
+      "Cyber Security",
+      "Digital Literacy"
+    ],
+    "declining_risk_roles": [
+      "Manual repetitive jobs",
+      "Low-skill administrative roles"
+    ]
+  },
+
+  "education_investment_advice": {
+    "high_roi_paths": [
+      "Technology degrees",
+      "Engineering degrees",
+      "Healthcare degrees",
+      "Data-related certifications"
+    ],
+    "medium_roi_paths": [
+      "Business degrees with specialization",
+      "Finance degrees with analytics skills"
+    ],
+    "high_risk_paths": [
+      "General degrees without specialization",
+      "Expensive private education with low job demand",
+      "Careers without digital or transferable skills"
+    ]
+  },
+
+  "decision_engine_rules": [
+    {
+      "condition": "student_interest == 'Technology'",
+      "recommendation": "Focus on AI, software development, or data analytics for high salary and job security"
+    },
+    {
+      "condition": "student_interest == 'Arts and Creative'",
+      "recommendation": "Combine creative skills with digital tools to reduce career risk"
+    },
+    {
+      "condition": "student_budget == 'low'",
+      "recommendation": "Avoid expensive degrees and focus on certifications and high-demand skills"
+    },
+    {
+      "condition": "student_goal == 'high_salary'",
+      "recommendation": "Choose careers in technology, engineering, or specialized healthcare"
+    },
+    {
+      "condition": "student_goal == 'job_security'",
+      "recommendation": "Choose stable fields like healthcare, education, or trades"
+    },
+    {
+      "condition": "student_uncertain == true",
+      "recommendation": "Start with digital literacy and explore data, business, or tech-related skills"
+    }
+  ],
+
+  "student_guidance": [
+    {
+      "insight": "Most modern careers require digital skills",
+      "advice": "Learn basic digital tools regardless of your career choice"
+    },
+    {
+      "insight": "Higher specialization leads to higher salary",
+      "advice": "Avoid general degrees without a clear career path"
+    },
+    {
+      "insight": "AI is transforming all industries",
+      "advice": "Learn how to use AI tools even if you are not in tech"
+    },
+    {
+      "insight": "Job demand varies by industry",
+      "advice": "Research job demand before committing to expensive education"
+    }
+  ]
+}
