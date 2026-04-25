@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 import json
 import re
-
+from loadData import DATASETS
 
 load_dotenv()
 
@@ -26,16 +26,28 @@ class UserProfile(BaseModel):
 
 @app.post("/analyze")
 async def analyze_career(profile: UserProfile):
-    print(f"I RECEIVED DA DATA: {profile.description}")
+    print(f"I RECEIVED DA DATA: {profile.description[:100]}")
     try:
         result = await get_response(profile)
-        print(result)
         return result
     except Exception as e:
+        import traceback
+        print(f"FULL ERROR: {e}")
+        print(traceback.format_exc())  
         raise HTTPException(status_code=500, detail=str(e))
 
 async def get_response(profile: UserProfile) -> dict:
     print("GENERATING RESPONSE TIME")
+
+    market_summary = json.dumps(DATASETS.get('marketanalysis.json', {}), indent=None)
+    careers_summary = json.dumps(DATASETS.get('careers.json', {}), indent=None)
+    skills_summary = json.dumps(DATASETS.get('skillmapping.json', {}), indent=None)
+    demand_summary = json.dumps(DATASETS.get('ondemandjobs.json', {}), indent=None)
+    workforce_summary = json.dumps(DATASETS.get('workforce.json', {}), indent=None)
+    graduatestats = json.dumps(DATASETS.get('graduatestats.json', {}), indent=None)
+    courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []), indent=None)
+    job_summary = json.dumps(DATASETS.get('job.csv', []), indent=None)
+
 
     client = OpenAI(
         api_key=os.getenv("ZAI_API_KEY"),
@@ -43,6 +55,19 @@ async def get_response(profile: UserProfile) -> dict:
     )
     
     content = f"""
+    You are a career consultant with access to real market data.
+
+    Here are some market data, use these to ground your recommendations and give accurate and concise responses
+    Market analysis: {market_summary}
+    In-demand jobs: {demand_summary}
+    Career paths: {careers_summary}
+    Skill mappings: {skills_summary}
+    Workforce info: {workforce_summary}
+    Graduate statistics: {graduatestats}
+    Course information: {courseinfo_summary}
+    Job information: {job_summary}
+
+
     Given this person's profile: {profile.description}
 
     Give your recommendations on what this person should do with their career and future.
@@ -73,9 +98,18 @@ async def get_response(profile: UserProfile) -> dict:
         ],
     )
 
-    raw = response.choices[0].message.content.strip()
-    raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
-
-    return json.loads(raw)
-
+    try:
+        raw = response.choices[0].message.content.strip()
+        raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
+        print(f"RAW RESPONSE: {raw[:500]}")  
+        return json.loads(raw)
+    except json.JSONDecodeError as e:
+        print(f"JSON PARSE FAILED: {e}")
+        print(f"RAW WAS: {raw}")
+        raise
+    except Exception as e:
+        import traceback
+        print(f"GET_RESPONSE ERROR: {e}")
+        print(traceback.format_exc())
+        raise
 

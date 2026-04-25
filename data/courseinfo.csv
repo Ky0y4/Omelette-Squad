@@ -1,0 +1,487 @@
+Uni,Classification,Course Name,Local Fee per Year (MYR),Duration (Years)
+MMU,foundation,communication,6500,1
+,foundation,computing,6500,1
+,foundation,creative multimedia,6500,1
+,foundation,engineering,6500,1
+,foundation,management,6500,1
+,diploma,3D modelling & animation,9920,2.5
+,diploma,applied communication,11700,2
+,diploma,cinematography,12250,2
+,diploma,creative audio,12250,2
+,diploma,creative multimedia,12250,2
+,diploma,information technology,12250,2
+,diploma,finance,11700,2
+,diploma,management,11700,2
+,bachelor (hons),accounting,24334,3
+,bachelor (hons),analytical economics,18084,3
+,bachelor (hons),business management,18084,3
+,bachelor (hons),digital enterprise management,18084,3
+,bachelor (hons),finance,18084,3
+,bachelor (hons),marketing,18084,3
+,bachelor (hons),cinematic arts,20750,3
+,bachelor (hons),cs in ai,20750,3
+,bachelor (hons),cs in cybersecurity,20750,3
+,bachelor (hons),cs in data science,20750,3
+,bachelor (hons),cs in game development,20750,3
+,bachelor (hons),cs in software engineering,20750,3
+,bachelor (hons),information technology information systems,20750,3
+,bachelor (hons),multimedia,20750,3
+,bachelor (hons),science intelligent robotics,20750,3
+,bachelor (hons),communication (strategic communication),17417,3
+,bachelor (hons),engineering,19000,4
+,masters (coursework),business administration,22270,1
+,masters (coursework),engineering,,1
+,masters (coursework),creative multimedia,23645,1
+,masters (coursework),engineering in business management,21770,1
+,,,,
+,masters (research),computer science,8450,2
+,masters (research),philosophy,3750,2
+,masters (research),science in creative multimedia,,1
+,Doctorate,business administration,18034,3
+,Doctorate,philosophy in communication,7350,3
+,Doctorate,philosophy in creative multimedia,5625,2
+,Doctorate,philosophy in engineering,3750,2
+,,,,
+APU,Certificate,Certificate in Administrative Skills,10969,1.33
+,Certificate,Certificate in Information & Communication Technology,9367,1.42
+,Certificate,Postgraduate Certificate of Education in Learning Design & Technology (ODL),7560,1
+,Foundation,Foundation in Architecture & Design Pathway,26400,1
+,Foundation,"Foundation in Business, Finance & Social Sciences Pathway",26400,1
+,Foundation,Foundation in Computing (ODL),19800,1
+,Foundation,Foundation in Computing & Technology Pathway,26400,1
+,Foundation,Foundation in Engineering,26800,1
+,Diploma,Diploma in Accounting,7392,2.5
+,Diploma,Diploma in Business Administration,7392,2.5
+,Diploma,Diploma in Business Information Technology,7392,2.5
+,Diploma,Diploma in Design and Media,7872,2.5
+,Diploma,Diploma in Events Management,7648,2.5
+,Diploma,Diploma in Hotel Management,7904,2.5
+,Diploma,Diploma in Information & Communication Technology (Data Informatics),7872,2.5
+,Diploma,Diploma in Information & Communication Technology (Interactive Technology),7872,2.5
+,Diploma,Diploma in Information & Communication Technology (Software Engineering),7872,2.5
+,Diploma,Diploma in Information & Communication Technology,7872,2.5
+,Diploma,Diploma in International Studies,7232,2.5
+,Diploma,Diploma in Mechatronic Engineering,7872,2.5
+,Postgraduate Diploma,Postgraduate Diploma of Education in Learning Design & Technology (ODL),3700,2
+,Bachelor,Bachelor in Banking and Finance (Hons) (Investment Analytics),10733,3
+,Bachelor,Bachelor in Banking and Finance (Hons) (Financial Planning),10733,3
+,Bachelor,Bachelor in Interactive Media & Immersive Technology (Hons),11356,3
+,Bachelor,Bachelor in Interactive Media & Immersive Technology (Hons) VR/AR,11356,3
+,Bachelor,BA (Hons) in Accounting and Finance,11089,3
+,Bachelor,Bachelor of Computer Engineering (Hons),7425,4
+,Bachelor,Bachelor of Electrical & Electronic Engineering (Hons),7425,4
+,Bachelor,Bachelor of Mechanical Engineering (Hons),7425,4
+,Bachelor,Bachelor of Mechatronic Engineering (Hons),7425,4
+,Bachelor,Bachelor of Petroleum Engineering (Hons),7425,4
+,Bachelor,BSc (Hons) in Information Technology,11356,3
+,Bachelor,BSc (Hons) in Computer Science,11356,3
+,Bachelor,BSc (Hons) in Software Engineering,11356,3
+,Master,Master of Business Administration (MBA),34800,1
+,Master,Master of Science in Artificial Intelligence,38500,1
+,Master,Master of Science in Cyber Security,37200,1
+,Master,Master of Finance,36100,1
+,Master,MBA in Digital Leadership - Online,10334,3
+,Master,MBA in Hospitality and Tourism,34800,1
+,Master,MBA in Supply Chain Management,13920,2.5
+,Master,MBA in Sustainability Leadership - Online,12400,2.5
+,Master,MSc in Artificial Intelligence (ODL) - 100% Online,11500,3
+,Master,Master of Science in Computing (MSc),13750,2
+,Master,MSc in Data Science and Business Analytics,40800,1
+,Master,MSc in Data Science and Business Analytics (ODL),14720,2.5
+,Master,Master of Science in Digital Transformation,34800,1
+,Master,Master of Science in Information Technology Management,34800,1
+,Master,MSc in Software Engineering,34800,1
+,Doctorate,Doctor of Business Administration (DBA),18267,3
+,Doctorate,Doctor of Philosophy in Management (ODL) - 100% Online,12834,3
+,Doctorate,PhD in Computing,15600,3
+,Doctorate,PhD in Computing (ODL),12834,3
+,Doctorate,PhD in Engineering,15600,3
+,Doctorate,PhD in Finance,15600,3
+,Doctorate,PhD in Management,15600,3
+,Doctorate,PhD in Technology,15600,3
+,Doctorate,PhD in Technology (ODL),12834,3
+,,,,
+UOW,Professional,Association of Chartered Certified Accountants (ACCA),11300,2.5
+,Professional,Foundation in Accountancy (ACCA-FIA),11450,1
+,Foundation,Foundation In Arts,22315,1
+,Foundation,Foundation in Engineering,23660,1
+,Diploma,Diploma in Business Administration (Hons),21120,2
+,Diploma,Diploma in Business (ODL mode),15890,2
+,Diploma,Diploma in Communication & Media Studies,23905,2
+,Diploma,Diploma in Computer Studies,22195,2
+,Diploma,Diploma in Early Childhood Education,14800,2
+,Diploma,Diploma in Entertainment Arts,24020,2
+,Diploma,Diploma in Graphic Design Technology,22260,2
+,Diploma,Diploma in Healthcare Service,14547,3
+,Diploma,Diploma in International Hotel Management,25240,2
+,Diploma,Diploma in Nursing,17045,3
+,Diploma,Diploma in Physiotherapy,16280,3
+,Bachelor,Bachelor in Accounting and Finance (Hons),28189,3
+,Bachelor,Bachelor of Accounting (Hons),27795,3
+,Bachelor,Bachelor of Arts (Hons) Business Management,21688,3
+,Bachelor,Bachelor of Business (Hons),26055,3
+,Bachelor,Bachelor of Communication (Hons),25900,3
+,Bachelor,BComm (Hons) Media Production,26282,3
+,Bachelor,Bachelor of Communication (Hons) Public Relations,26282,3
+,Bachelor,Bachelor of Computer Science (Hons),27984,3
+,Bachelor,Bachelor of Creative Industry Management (Hons),26592,3
+,Bachelor,Bachelor of Culinary Management (Hons),33945,3
+,Bachelor,BEng (Hons) Electrical & Electronics Engineering,24864,4
+,Bachelor,Bachelor of Game Development (Hons),28402,3
+,Bachelor,Bachelor of Hospitality Management (Hons),33742,3
+,Bachelor,Bachelor of Law (LLB),17092,3
+,Bachelor,Bachelor of Mechanical Engineering (Hons),24772,4
+,Bachelor,Bachelor of Mechatronics Engineering (Hons),24772,4
+,Bachelor,Bachelor of Software Engineering (Hons),27287,3
+,Master,Master of Arts (By Research),16340,2
+,,,,
+HELP,Foundation,Foundation in Arts,14700,1
+,Foundation,Foundation in Science,16450,1
+,Diploma,Diploma in Business,20963,2
+,Diploma,Diploma in Communication,20318,2
+,Diploma,Diploma in Early Childhood Education,11315,2.33
+,Diploma,Diploma in Education,6560,2.5
+,Diploma,Diploma in Information Technology,22400,2
+,Bachelor,Bachelor (Hons) in Early Childhood Education,24779,3
+,Bachelor,Bachelor (Hons) in Information Technology,25082,3
+,Bachelor,Bachelor in International Business (Honours),25900,3
+,Bachelor,Bachelor in Marketing (Honours),25900,3
+,Bachelor,Bachelor of Accounting (Hons),26767,3
+,Bachelor,Bachelor of Business Analytics (Hons),25900,3
+,Bachelor,Bachelor of Business (Entrepreneurship) with Honours,25900,3
+,Bachelor,Bachelor of Business (Finance) with Honours,25900,3
+,Bachelor,Bachelor of Business (Hons) in Hospitality Management,28020,3
+,Bachelor,Bachelor of Business in Human Resource Management (Hons),25900,3
+,Bachelor,Bachelor of Business Psychology (Hons),27234,3
+,Bachelor,Bachelor of Computer Science (Honours),28640,3
+,Bachelor,Bachelor of Economics (Hons),25900,3
+,Bachelor,Bachelor of Information Technology (Hons) Data Analytics,25082,3
+,Bachelor,Bachelor of Law (LLB) with Honours,25715,3
+,Bachelor,Bachelor of Management (Hons),25900,3
+,Bachelor,Bachelor of Psychology (Hons),32387,3
+,Bachelor,Bachelor of Tourism Management (Honours),28240,3
+,Diploma,UK Degree Transfer Program - Law,31925,2
+,,,,
+INTI,Certificate,Certificate In Business Studies,9398,1.5
+,Certificate,Certificate In Information Technology,9150,1.58
+,Foundation,Cambridge A Level (CAL),14058,1.5
+,Foundation,Foundation in Business,17810,1
+,Foundation,Foundation in Information Technology,17810,1
+,Foundation,Foundation in Science,19305,1
+,Diploma,Diploma in Business,16755,2
+,Diploma,Diploma in Computer Science,19500,2
+,Diploma,Diploma in Culinary Arts,23294,2
+,Diploma,Diploma in Digital Media,20442,2
+,Diploma,Diploma in E-Commerce,17549,2
+,Diploma,Diploma in Electrical & Electronic Engineering,14976,2.5
+,Diploma,Diploma in Finance,17146,2
+,Diploma,Diploma in Hotel Management,17918,2
+,Diploma,Diploma in Information Technology,17070,2
+,Diploma,Diploma in Marketing,17549,2
+,Diploma,Diploma in Mass Communication,17241,2
+,Diploma,Diploma in Mechanical Engineering,15220,2.5
+,Diploma,New South Wales TAFE Advanced Diploma Of Accounting,18112,2
+,Bachelor,American Degree Transfer Program - Arts & Applied Science,10465,4
+,Bachelor,Bachelor of Arts (Hons) Business Administration with UH UK,22929,3
+,Bachelor,Bachelor of Arts in Psychology with SNHU USA,20597,4
+,Bachelor,Bachelor of Business,23241,3
+,Bachelor,Bachelor of Media and Communication with SUT AUS,23242,3
+,Bachelor,Bachelor of Science (Hons) in Computer Science with CU UK,23422,3
+,Bachelor,Bachelor of Arts (Hons) Accounting and Finance with UH UK,23146,3
+,Bachelor,Bachelor of Arts (Hons) Mass Communications with UH UK,23544,3
+,Master,Master of Engineering in Electrical and Electronic Engineering with CU UK,25499,4
+,Master,Master of Engineering in Mechanical Engineering,25503,4
+,,,,
+Sunway,English Programme,Intensive English Programme,18600,0.19
+,Post Basic Nursing,Post Basic in Intensive Care Nursing,16475,0.5
+,Post Basic Nursing,Post Basic in Perioperative Nursing,16475,0.5
+,Post Basic Nursing,Post Basic in Renal Nursing,16475,0.5
+,Diploma,Diploma in Culinary Arts,32430,2
+,Diploma,Diploma in Events Management,27670,2
+,Diploma,Diploma in Graphic and Multimedia Design,26623,2.25
+,Diploma,Diploma In Hotel Management,28370,2
+,Diploma,Diploma in Interior Design,26623,2.25
+,Diploma,Diploma in Music,28750,2
+,Diploma,Diploma in Nursing,19684,3
+,Diploma,Diploma In Performing Arts,29925,2
+,Postgraduate Diploma,Postgraduate Diploma In Primary Care For Elderly,26200,1
+,Foundation/Pre-University,American Degree Transfer Program (ADTP),30950,2
+,Bachelor,Bachelor (Honours) in Finance,38007,3
+,Bachelor,Bachelor in Digital Communication (Advertising) with Honors (ASU),29498,4
+,Bachelor,Bachelor of Arts (Honours) in Architecture,40234,3
+,Bachelor,Bachelor of Arts (Honours) in Digital Media Communication,38767,3
+,Bachelor,Bachelor of Arts (Hons) in Global Management,29920,4
+,Bachelor,Bachelor of Business Analytics (Honours),38007,3
+,Bachelor,Bachelor of Chemical Engineering with Honours,36143,4
+,Bachelor,Bachelor of Civil Engineering with Honours,35465,4
+,Bachelor,Bachelor of Electronic and Electrical Engineering with Honours,36385,4
+,Bachelor,Bachelor of Information Systems (Honours) (Data Analytics),39367,3
+,Bachelor,Bachelor of Mechanical Engineering with Honours,36200,4
+,Bachelor,Bachelor of Mechatronic Engineering (Robotics) with Honours,35457,4
+,Bachelor,Bachelor of Nursing (Honours),22365,4
+,Bachelor,Bachelor of Science (Honours) in Food Innovation,39380,3
+,Bachelor,Bachelor of Software Engineering (Hons),39367,3
+,Bachelor,Bachelor of Arts (Honours) in Advertising and Branding,36914,3
+,Bachelor,BA (Hons) in Communication,36977,3
+,Bachelor,Bachelor of Arts (Honours) Contemporary Music (Audio Technology),37720,3
+,Bachelor,Bachelor of Arts (Honours) Design Communication,36984,3
+,Bachelor,Bachelor of Arts (Honours) Digital Film Production,36667,3
+,Bachelor,Bachelor of Arts (Honours) Entrepreneurship,36620,3
+,Bachelor,Bachelor of Arts (Honours) in Interior Architecture,33983,3.5
+,Bachelor,Bachelor of Arts (Honours) Music Performance,38634,3
+,Bachelor,Bachelor of Arts (Honours) in Theatre Production,35700,3
+,Bachelor,Bachelor of Arts in Psychology (Hons) (ASU),29925,4
+,Bachelor,Bachelor of Science (Honours) in Statistical Data Modelling,36107,3
+,Bachelor,Bachelor of Science (Hons) in Accounting and Finance,38400,3
+,Bachelor,Bachelor of Science (Honours) Biomedicine,41314,3
+,Bachelor,Bachelor of Science (Honours) in Business Management,38007,3
+,Bachelor,Bachelor of Science (Honours) in Computer Science,38167,3
+,Bachelor,Bachelor of Science (Honours) in Conventions and Events Management,36647,3
+,Bachelor,Bachelor of Science (Hons) in Culinary Management,37967,3
+,Bachelor,Bachelor of Science (Honours) Financial Analysis,38007,3
+,Bachelor,Bachelor of Science (Honours) Financial Economics,38007,3
+,Bachelor,Bachelor of Science (Honours) Global Supply Chain Management,38007,3
+,Bachelor,Bachelor of Science (Hons) in Actuarial Studies,36107,3
+,Bachelor,Bachelor of Science (Hons) Computer Science with Artificial Intelligence,30038,4
+,Bachelor,Bachelor of Science (Honours) in Business Studies,38007,3
+,Bachelor,Bachelor of Science (Honours) in Information Technology,38167,3
+,Bachelor,BSc (Hons) Information Technology (Networking and Security),38167,3
+,Bachelor,Bachelor of Science (Honours) in Psychology,36444,3
+,Bachelor,Bachelor of Science (Honours) in International Business,38007,3
+,Bachelor,Bachelor of Science (Honours) in International Hospitality Management,36850,3
+,Bachelor,Bachelor of Science (Honours) Marketing,38007,3
+,Bachelor,BSc (Hons) Medical Biotechnology,37054,3
+,Bachelor,Doctor of Medicine (MD),100340,5
+,Master,Master of Arts in Creative Arts and Media,23350,2
+,Master,Master of Arts in Visual Communication and Media Studies,49500,1
+,Master,Master in Advanced Computing,49500,1
+,Master,Master in Artificial Intelligence (MSc),49500,1
+,Master,Master in International Hospitality Management,49900,1
+,Master,Master in Medical Science,25500,2
+,Master,Master in Sustainable Development Management,48300,1
+,Master,Master of Applied Behaviour Analysis,24950,2
+,Master,Master of Arts in Communication,46950,1
+,Master,Master of Business Analytics,49480,1
+,Master,Master of Counselling,28005,2
+,Master,Master of Education,34940,1
+,Master,Master of Education by Research,15000,3
+,Master,Master of Human Resource Management,39568,1.25
+,Master,Master of Marketing,52140,1
+,Master,Master of Philosophy in Business Administration,23350,2
+,Master,Master of Science in Life Sciences,23350,2
+,Master,Masters of Counselling (Clinical Mental Health),31240,2
+,Master,Master of Science in Applied Mathematics,47940,1
+,Master,Master of Science in Computer Science,23350,2
+,Master,Master of Science in Information Systems,22810,2
+,Master,MSc in Mathematical Sciences,23350,2
+,Master,Master of Science in Psychology,23350,2
+,Doctorate,Doctor of Business Administration (DBA),26767,3
+,Doctorate,Doctor of Education (D.Ed),17330,3
+,Doctorate,Doctor of Philosophy in Biology,20327,3
+,Doctorate,Doctor of Philosophy (PhD) in Business,19547,3
+,Doctorate,Doctor of Philosophy (Computing),20327,3
+,Doctorate,Doctor of Philosophy (PhD) in Creative Arts and Media,18007,3
+,Doctorate,Doctor of Philosophy In Education,20327,3
+,Doctorate,Doctor of Philosophy in Hospitality and Tourism,20327,3
+,Doctorate,Doctor of Philosophy in Mathematical Sciences,20327,3
+,Doctorate,Doctor of Philosophy in Medical Science,23487,3
+,Doctorate,Doctor of Philosophy in Psychology,19497,3
+,Doctorate,PhD in Sustainable Development,20327,3
+,Doctorate,Doctor of Philosophy (PhD) in Sustainability Science and Technology,20327,3
+,,,,
+Taylor,Postgraduate Certificate,Postgraduate Certificate in Education (100% Online),13380,1 year
+,Postgraduate Certificate,Postgraduate Certificate in Teaching and Learning,20180,9 months
+,Advanced Diploma,Advanced Diploma in Patisserie & Gastronomic Cuisine,35090,1 year
+,Diploma,Diploma in Culinary Arts,30666,2 years
+,Diploma,Diploma in Hotel Management,28001,2 years
+,Bachelor,Bachelor in Accounting (Fintech) (Honours),38362,3 years
+,Bachelor,Bachelor of Accounting and Finance (Honours),39716,3 years
+,Bachelor,Bachelor of Actuarial Studies (Honours),36153,3 years
+,Bachelor,Bachelor of Applied Health Sciences (Honours),44145,3 years
+,Bachelor,Bachelor of Banking and Finance (Honours),39717,3 years
+,Bachelor,Bachelor of Biomedical Science (Hons),37835,3.5 years
+,Bachelor,Bachelor of Biotechnology (Hons),38565,3 years
+,Bachelor,Bachelor of Business (Honours),41265,3 years
+,Bachelor,Bachelor of Business (Honours) in International Business & Marketing,41265,3 years
+,Bachelor,Bachelor of Chemical Engineering with Honours,40267,4 years
+,Bachelor,Bachelor of Computer Science (Honours),38565,3 years
+,Bachelor,Bachelor of Culinary Management (Hons),37737,3 years
+,Bachelor,Bachelor of Design (Hons) in Creative Media,38565,3 years
+,Bachelor,Bachelor of Education (Honours),34785,3 years
+,Bachelor,Bachelor of Electrical and Electronic Engineering (Honours),40267,4 years
+,Bachelor,Bachelor of Entrepreneurship (Honours) in Team Entrepreneurship,34893,3 years
+,Bachelor,Bachelor of Fashion Design Technology (Hons),36827,3 years
+,Bachelor,Bachelor of Finance and Economics (Honours),39717,3 years
+,Bachelor,Bachelor of Food Science (Honours),38565,3 years
+,Bachelor,Bachelor of Interactive Spatial Design (Honours),36585,3 years
+,Bachelor,Bachelor of Information Technology (Honours),38565,3 years
+,Bachelor,Bachelor of Laws (Honours),40985,3 years
+,Bachelor,Bachelor of Mass Communication (Honours),37881,3 years
+,Bachelor,Bachelor of Mechanical Engineering (Hons),40267,4 years
+,Bachelor,Bachelor of Mechatronics Engineering (Honours),40267,4 years
+,Bachelor,Bachelor of Patisserie Arts (Hons),35937,3 years
+,Bachelor,Bachelor of Quantity Surveying (Hons),27162,3.5 years
+,Bachelor,Bachelor of Science (Hons) in Culinology,40077,3 years
+,Bachelor,Bachelor of Software Engineering (Honours),38565,3 years
+,Bachelor,Bachelor of Arts (Honours) in Interior Architecture,35432,3.5 years
+,Bachelor,Bachelor of Science (Honours) in Architecture,43101,3 years
+,Bachelor,Bachelor of Science (Honours) in Sustainable Digital Construction Management,32769,3 years
+,Master,Master of Applied Computing,45777,1 year
+,Master,Master of Applied Computing (Online),14504,2 years
+,Master,Master of Architecture,29175,2 years
+,Master,Master of Business Administration (MBA) - 100% Online,19500,2 years
+,Master,Master of Communication,28560,1.5 years
+,Master,Master of Computer Science,16550,2 years
+,Master,Master of Design,16550,2 years
+,Master,Master of Education,16550,2 years
+,Master,Master of Food Studies,16550,2 years
+,Master,Master of Food Studies and Gastronomy,56480,1 year
+,Master,Master in Management,54720,1 year
+,Master,Master of Science,16550,2 years
+,Master,Master of Science in Engineering,16550,2 years
+,Master,Master of Teaching & Learning,26160,1.5 years
+,Master,Master of Teaching & Learning (100% Online),13720,2 years
+,Master,Master of Business Administration (MBA),54720,1 year
+,Master,Master of Science in Virtual Design and Construction,43760,1 year
+,Doctoral,Doctor of Business Administration,23894,3 years
+,Doctoral,Doctor of Philosophy in Computer Science,16350,3 years
+,Doctoral,Doctor of Philosophy in Architecture,16350,3 years
+,Doctoral,Doctor of Philosophy (PhD) in Business,16350,3 years
+,Doctoral,Doctor of Philosophy in Design Management,16350,3 years
+,Doctoral,Doctor of Philosophy in Education,16350,3 years
+,Doctoral,Doctor of Philosophy in Engineering,16350,3 years
+,Doctoral,Doctor of Philosophy in Food Studies,16350,3 years
+,Doctoral,Doctor of Philosophy (PhD) in Media and Communication Studies,16350,3 years
+,Doctoral,Doctor of Philosophy in Science,16350,3 years
+,,,,
+UTAR,Foundation,Foundation in Science,11300,1
+,Foundation,Foundation in Arts,11100,1
+,Bachelor,Bachelor of Science (Hons) Physics,47650,3
+,Bachelor,Bachelor of Accounting (Hons),52800,4
+,Bachelor,Bachelor of Science (Honours) Actuarial Science,46150,3
+,Bachelor,Bachelor of Biomedical Engineering with Honours,55500,4
+,Bachelor,Bachelor of Corporate Communication (Hons),45200,3
+,Bachelor,Bachelor of Arts (Hons) English Language,43100,3
+,Bachelor,Bachelor of Communication (Hons) Journalism,44900,3
+,Bachelor,Bachelor of Social Science (Hons) Psychology,45750,3
+,Bachelor,Bachelor of Communication (Hons) Public Relations,44900,3
+,Bachelor,Bachelor of Chemical Engineering with Honours,55500,4
+,Bachelor,Bachelor of Mechatronics Engineering with Honours,55400,4
+,Bachelor,Bachelor of Science (Honours) Financial Mathematics,46150,3
+,Bachelor,Bachelor of Early Childhood Education (Hons),44900,3
+,Bachelor,Bachelor of Media and Creative Studies (Hons),45250,3
+,Bachelor,Bachelor of Materials Engineering with Honours,55500,4
+,Bachelor,Bachelor of Science (Hons) Biochemistry,48700,3
+,Bachelor,Bachelor of Electrical and Electronic Engineering with Honours,55400,4
+,Bachelor,Bachelor of Civil Engineering with Honours,55500,4
+,Bachelor,Bachelor of Communication (Hons) Broadcasting,45450,3
+,Bachelor,Bachelor of Science (Honours) Quantity Surveying,51650,4
+,Bachelor,Bachelor of Mechanical Engineering with Honours,55500,4
+,Bachelor,Bachelor of Information Technology (Honours) Communications and Networking,46000,3
+,Bachelor,Bachelor of Science (Honours) Applied Mathematics with Computing,46150,3
+,Bachelor,Bachelor of Arts (Hons) Graphic Design and Multimedia,45200,3
+,Bachelor,Bachelor of Arts (Hons) Journalism in Chinese Media,45200,3
+,Bachelor,"Bachelor of Science (Hons) Environmental, Occupational Safety and Health",52800,4
+,Bachelor,Bachelor of Communication (Hons) Advertising,45250,3
+,Bachelor,Bachelor of Science (Hons) Food Science,48700,3
+,Bachelor,Bachelor of Arts (Hons) English Education,42850,3
+,Bachelor,Bachelor of Finance (Financial Technology) with Honours,47000,3
+,Bachelor,Bachelor of Arts (Hons) Chinese Studies,43650,3
+,Bachelor,Bachelor of Science (Hons) Game Development,44550,3
+,Bachelor,Bachelor of Social Science (Hons) Guidance and Counselling,46600,4
+,Bachelor,Bachelor of Building and Property Management (Honours),46550,3
+,Bachelor,Bachelor of Chinese Medicine (Honours),92750,5
+,Bachelor,Bachelor of Arts (Hons) Digital Animation,44900,3
+,Bachelor,Bachelor of Arts (Hons) Game Design,45250,3
+,Bachelor,Bachelor of Telecommunications Engineering with Honours,54900,4
+,Bachelor,Bachelor of Physiotherapy (Hons),69850,4
+,Bachelor,Bachelor of Engineering (Hons) Environmental Engineering,55150,4
+,Bachelor,Bachelor of Science (Honours) Software Engineering,45750,3
+,Bachelor,Bachelor of Nursing (Hons),69950,4
+,Bachelor,Bachelor of Science (Honours) Architecture,49200,3
+,Bachelor,Bachelor of Economics (Honours) Global Economics,46300,3
+,Bachelor,Bachelor of International Business (Honours),46650,3
+,Bachelor,Bachelor of Medicine and Bachelor of Surgery (M.B.B.S.),269150,5
+,Master,Master in Data Management and Analytics,19650,2
+,Master,Master of Strategic Communication,18450,1
+,Master,Master of Business Administration (Corporate Governance),21950,1
+,Master,Master of Business Administration,21950,1
+,Master,Master of Arts (Communication),9000,2
+,Master,Master of Real Estate Development,21950,1
+,Master,Master of Engineering Science,9000,2
+,Master,Master of Business Administration (Corporate Management),21950,1
+,Master,Master of Sustainable Construction Management,18450,1
+,Master,Master of Science,9000,2
+,Master,Master of Engineering (Mechanical),18450,1
+,Master,Master of Philosophy (Social Science),9000,2
+,Master,Master of Engineering (Electronic Systems),18450,1
+,Master,Master of Engineering (Civil),18850,1
+,Master,Master of Information Systems,18450,1
+,Master,Master of Mathematics,19250,2
+,Master,Master of Engineering (Electrical),19300,1
+,Master,Master of Chinese Studies,9100,2
+,Master,Master of Business Administration (Building Management),21950,1
+,Master,Master of Project Management,18450,1
+,Master,Master of Philosophy,9000,2
+,Master,Master of Communication,12200,2
+,Master,Master of Arts (Chinese Studies),8000,2
+,Master,Master of Environmental Technology,18450,1
+,Master,Master of Psychology (Industrial & Organisational Psychology),12200,2
+,Master,Master of Medical Science (Chinese Medicine),9000,2
+,Master,Master of Medical Science,9000,2
+,Master,Master of Architecture,27850,2
+,Master,Master of Science (Computer Science),9000,2
+,Postgraduate Diploma,Postgraduate Diploma in Data Management and Analytics,14550,1
+,PhD,Doctor of Philosophy (Science),12350,3
+,PhD,Doctor of Philosophy (Economics),12307,3
+,PhD,Doctor of Philosophy (Social Science),11050,3
+,PhD,Doctor of Philosophy (Medical Science),12350,3
+,PhD,Doctor of Philosophy (Engineering),12350,3
+,PhD,Doctor of Philosophy (Chinese Medicine),12350,3
+,PhD,Doctor of Philosophy (Creative Arts),11050,3
+,PhD,Doctor of Philosophy,12350,3
+,PhD,Doctor of Philosophy (Computer Science),12350,3
+,PhD,Doctor of Philosophy (Chinese Studies),12700,3
+,,,,
+Xiamen,Foundation,Foundation in Arts and Social Science,15300,1
+,Foundation,Foundation in Science,17300,1
+,Foundation,Foundation in Information Technology,17300,1
+,Bachelor,Bachelor of Chemical Engineering,28075,4
+,Bachelor,Bachelor of Economics in Finance,26100,3
+,Bachelor,Bachelor of Electrical and Electronics Engineering,28075,4
+,Bachelor,Bachelor of Engineering in Artificial Intelligence,29075,4
+,Bachelor,Bachelor of Engineering in Computer Science and Technology,28075,4
+,Bachelor,Bachelor of Engineering in Cyber Security,29075,4
+,Bachelor,Bachelor of Engineering in Data Science,29075,4
+,Bachelor,Bachelor of Engineering in Digital Media Technology,28075,4
+,Bachelor,Bachelor of Engineering in New Energy Science and Engineering,28075,4
+,Bachelor,Bachelor of Engineering in Software Engineering,2875,4
+,Bachelor,Bachelor of Management in Accounting (Hons),26100,3
+,Bachelor,Bachelor of Management in E-Commerce,26100,3
+,Bachelor,Bachelor of Management in International Business (Hons),26100,3
+,Bachelor,Bachelor of Medicine in Traditional Chinese Medicine,27060,5
+,Bachelor,Bachelor of Robotics and Automation Engineering,29075,4
+,Bachelor,Bachelor of Arts in Advertising (Honours),27100,3
+,Bachelor,BA in Chinese Studies (Honours),26100,3
+,Bachelor,BA in Communication (Honours),27100,3
+,Bachelor,Bachelor of Arts in English Language and Literature (Honours),26100,3
+,Bachelor,Bachelor of Arts in Journalism (Honours),26100,3
+,Bachelor,Bachelor of Science in Marine Biotechnology (Hons),28075,4
+,Bachelor,BSc Marine Environmental Chemistry (Hons),28075,4
+,Bachelor,BSc Mathematics and Applied Mathematics (Hons),25100,3
+,Bachelor,Bachelor of Science in Physics (Hons),28075,4
+,Master,Master of Arts in Chinese Studies,12150,2
+,Master,Master in New Energy Science and Engineering,25150,2
+,Master,Master of Communication and Culture,17650,2
+,Master,Master of Economics in Finance,20650,2
+,Master,Master of Business Administration (MBA),32288,1
+,Master,MSc Chemical Engineering,25150,2
+,Master,MSc Electrical and Electronic Engineering,22650,2
+,Master,MSc Mathematics and Applied Mathematics,13150,2
+,Master,MSc in Physics,15150,2
+,Master,MSc Marine Biotechnology,22150,2
+,PhD,PhD Chemical Engineering,30100,3
+,PhD,PhD in Chinese Studies,12100,3
+,PhD,PhD in Mathematics,12086,3
+,PhD,PhD New Energy Science and Engineering,30100,3
+,PhD,PhD in Physics,15100,3
