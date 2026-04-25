@@ -2,7 +2,8 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-import google.generativeai as genai
+from openai import OpenAI
+import httpx
 import os
 import json
 import re
@@ -10,9 +11,6 @@ from loadData import DATASETS
 from readFiles import readPDF, readDOCX
 
 load_dotenv()
-
-# Configure the Gemini API client globally
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = FastAPI()
 
@@ -163,19 +161,26 @@ async def get_response(profile: UserProfile) -> dict:
     }}
     """
 
+    client = OpenAI(
+        api_key=os.getenv("ZAI_API_KEY"),
+        base_url="https://api.ilmu.ai/v1",
+        http_client=httpx.Client(timeout=120.0),
+    )
+
     try:
-        model = genai.GenerativeModel(
-            model_name="gemini-3-flash-preview",
-            system_instruction="You are a Decision Intelligence System. Always respond with valid JSON only.",
-            generation_config={"response_mime_type": "application/json"}
+        response = client.chat.completions.create(
+            model="ilmu-glm-5.1",
+            messages=[
+                {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
+                {"role": "user", "content": content},
+            ],
         )
 
-        response = await model.generate_content_async(content)
-        raw = response.text.strip()
+        raw = response.choices[0].message.content.strip()
+        raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
         print(f"RAW RESPONSE: {raw[:500]}")
-        
         return json.loads(raw)
-        
+
     except json.JSONDecodeError as e:
         print(f"JSON PARSE FAILED: {e}")
         print(f"RAW WAS: {raw}")
