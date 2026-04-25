@@ -195,6 +195,17 @@
   font-size: 0.95rem;
 }
 
+.insight-section {
+  background: #f8faff;
+  border: 1px solid #dbe7ff;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.insight-section h5 {
+  color: #1f4db5;
+}
+
 .next-steps {
   background: #f8f9fa;
   border-radius: 6px;

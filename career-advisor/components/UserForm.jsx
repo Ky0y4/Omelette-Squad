@@ -3,24 +3,35 @@
 import { useState } from 'react';
 
 export default function UserForm({ onAnalyze }) {
-  const [userDescription, setUserDescription] = useState('');
+  const [educationLevel, setEducationLevel] = useState('');
+  const [technicalSkills, setTechnicalSkills] = useState('');
+  const [enjoyTasks, setEnjoyTasks] = useState('');
+  const [workEnvironment, setWorkEnvironment] = useState('');
+  const [targetSalaryLocation, setTargetSalaryLocation] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!userDescription.trim()) {
-      alert('Please describe yourself to get career recommendations');
+    if (
+      !educationLevel.trim() ||
+      !technicalSkills.trim() ||
+      !enjoyTasks.trim() ||
+      !workEnvironment.trim() ||
+      !targetSalaryLocation.trim()
+    ) {
+      alert('Please complete all fields so we can provide a strong recommendation.');
       return;
     }
 
     setIsSubmitting(true);
 
+    const description = `Education: ${educationLevel.trim()}. Skills / tools: ${technicalSkills.trim()}. Tasks I enjoy: ${enjoyTasks.trim()}. Ideal environment: ${workEnvironment.trim()}. Target salary and location: ${targetSalaryLocation.trim()}.`;
+
     try {
-      // Send simplified data structure
       await onAnalyze({
-        description: userDescription.trim(),
-        timestamp: new Date().toISOString()
+        description,
+        timestamp: new Date().toISOString(),
       });
     } catch (error) {
       console.error('Submission error:', error);
@@ -34,30 +45,74 @@ export default function UserForm({ onAnalyze }) {
     <div className="user-form">
       <h2>Tell Us About Yourself</h2>
       <p className="form-description">
-        Describe your interests, skills, experience, and career goals. The more detail you provide,
-        the better we can match you with suitable career paths.
+        We’ve broken your profile into five structured questions to help the Decision Intelligence System give the most accurate recommendation.
       </p>
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="description">Your Profile Description *</label>
-          <textarea
-            id="description"
-            value={userDescription}
-            onChange={(e) => setUserDescription(e.target.value)}
-            placeholder="Example: I'm a 25-year-old computer science graduate with 2 years of experience in web development. I enjoy solving complex problems, working with data, and building user-friendly applications. I'm interested in technology, artificial intelligence, and want a career that allows me to be creative while having work-life balance. I have skills in Python, JavaScript, React, and SQL..."
-            rows="12"
-            required={true}
+          <label htmlFor="educationLevel">Current education level and field of study *</label>
+          <input
+            id="educationLevel"
+            type="text"
+            value={educationLevel}
+            onChange={(e) => setEducationLevel(e.target.value)}
+            placeholder="Example: Bachelor's in Computer Science"
+            required
           />
-          <div className="character-count">
-            {userDescription.length} characters
-          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="technicalSkills">3-5 technical skills or tools you know *</label>
+          <textarea
+            id="technicalSkills"
+            value={technicalSkills}
+            onChange={(e) => setTechnicalSkills(e.target.value)}
+            placeholder="Example: Python, React, SQL, data analysis"
+            rows="3"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="enjoyTasks">Tasks or problems you enjoy solving *</label>
+          <textarea
+            id="enjoyTasks"
+            value={enjoyTasks}
+            onChange={(e) => setEnjoyTasks(e.target.value)}
+            placeholder="Example: building dashboards, solving business problems, optimizing processes"
+            rows="3"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="workEnvironment">Ideal work environment *</label>
+          <input
+            id="workEnvironment"
+            type="text"
+            value={workEnvironment}
+            onChange={(e) => setWorkEnvironment(e.target.value)}
+            placeholder="Example: remote, fast-paced, collaborative team"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="targetSalaryLocation">Target salary and preferred location *</label>
+          <input
+            id="targetSalaryLocation"
+            type="text"
+            value={targetSalaryLocation}
+            onChange={(e) => setTargetSalaryLocation(e.target.value)}
+            placeholder="Example: RM80k in Kuala Lumpur or remote ASEAN roles"
+            required
+          />
         </div>
 
         <button
           type="submit"
           className="submit-btn"
-          disabled={isSubmitting || !userDescription.trim()}
+          disabled={isSubmitting}
         >
           {isSubmitting ? 'Analyzing...' : 'Get Career Recommendations'}
         </button>

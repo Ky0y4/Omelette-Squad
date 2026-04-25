@@ -84,12 +84,32 @@ function CareerCard({ career, rank }) {
         <div className="section">
           <h5>Next Steps</h5>
           <div className="next-steps">
-            {career.next_steps.split('\n').map((step, index) => (
+            {career.next_steps?.split('\n').map((step, index) => (
               <div key={index} className="step">
                 {step}
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="section insight-section">
+          <h5>Market Reality</h5>
+          <p>{career.market_reality}</p>
+        </div>
+
+        <div className="section insight-section">
+          <h5>Economic Forecast</h5>
+          <p>{career.economic_forecast}</p>
+        </div>
+
+        <div className="section insight-section">
+          <h5>Optimization Strategy</h5>
+          <p>{career.optimization_strategy}</p>
+        </div>
+
+        <div className="section insight-section">
+          <h5>Decision Impact</h5>
+          <p>{career.decision_impact}</p>
         </div>
       </div>
     </div>

@@ -55,22 +55,27 @@ async def get_response(profile: UserProfile) -> dict:
     )
     
     content = f"""
-    You are a career consultant with access to real market data.
+    You are a Decision Intelligence System. Always respond with valid JSON only.
 
-    Here are some market data, use these to ground your recommendations and give accurate and concise responses
-    Market analysis: {market_summary}
-    In-demand jobs: {demand_summary}
-    Career paths: {careers_summary}
-    Skill mappings: {skills_summary}
-    Workforce info: {workforce_summary}
-    Graduate statistics: {graduatestats}
-    Course information: {courseinfo_summary}
-    Job information: {job_summary}
-
+    You have access to these market datasets. You MUST reference the provided datasets as you analyze the profile.
+    - MyCOL 2024/25 workforce criticality and role safety data: {workforce_summary}
+    - DOSM 2024 median salary and regional wage data: {market_summary}
+    - FSF 2025 future skills and skill-up recommendation data: {skills_summary}
+    - In-demand jobs: {demand_summary}
+    - Career paths: {careers_summary}
+    - Graduate statistics: {graduatestats}
+    - Course information: {courseinfo_summary}
+    - Job information: {job_summary}
 
     Given this person's profile: {profile.description}
 
-    Give your recommendations on what this person should do with their career and future.
+    Give concise recommendations and justify them with the data.
+    Use the provided datasets to support:
+    - the criticality and safety of the recommended role,
+    - the median salary and regional economic signal,
+    - a concrete skill-up recommendation,
+    - the impact of those skills on career risk, salary, and growth.
+
     Respond ONLY with a valid JSON object — no markdown, no explanation, no code fences.
     Follow this exact structure:
 
@@ -82,7 +87,11 @@ async def get_response(profile: UserProfile) -> dict:
                 "match_score": 90,
                 "why_it_fits": "...",
                 "trade_offs": "...",
-                "next_steps": "..."
+                "next_steps": "...",
+                "market_reality": "Detail the role's criticality and safety based on the MyCOL/workforce data.",
+                "economic_forecast": "Provide the median salary and regional data based on the DOSM/wage data.",
+                "optimization_strategy": "Provide a skill-up recommendation based on the FSF/future skills data.",
+                "decision_impact": "Explain how adding these skills impacts their career, salary, or risk."
             }}
         ]
     }}
@@ -93,7 +102,7 @@ async def get_response(profile: UserProfile) -> dict:
     response = client.chat.completions.create(
         model="ilmu-glm-5.1",
         messages=[
-            {"role": "system", "content": "You are an expert career consultant. Always respond with valid JSON only."},
+            {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
             {"role": "user", "content": content},  
         ],
     )

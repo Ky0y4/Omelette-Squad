@@ -19,7 +19,8 @@
   font-weight: 500;
 }
 
-.form-group textarea {
+.form-group textarea,
+.form-group input {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
@@ -28,6 +29,9 @@
   font-family: inherit;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.form-group textarea {
   resize: vertical;
 }
 
