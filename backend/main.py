@@ -9,8 +9,6 @@ import re
 from loadData import DATASETS
 from readFiles import readPDF, readDOCX
 import httpx
-import google.generativeai as genai
-from google.ai.generativelanguage_v1beta.types import content
 
 load_dotenv()
 
@@ -28,7 +26,6 @@ class UserProfile(BaseModel):
     description: str
     timestamp: str
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 @app.post("/analyze")
 async def analyze_career(
