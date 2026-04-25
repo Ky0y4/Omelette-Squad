@@ -1,36 +1,66 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
-  font-family: system-ui, -apple-system, sans-serif;
+:root {
+  /* ── Warm "Soft Dark" Palette ── */
+  --ink: #fdfbf7;           
+  --ink-muted: #b8b3a8;     
+  --ink-faint: #7a766d;     
+  
+  --surface: #1a1815;       
+  --surface-raised: #24221e;
+  --surface-sunken: #12110e;
+  
+  --gold: #e8c371;
+  --gold-dark: #c9972a;
+  
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px; 
+  
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.2);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+  
+  /* Beautiful Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-button {
-  cursor: pointer;
+html, body {
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-input,
-textarea,
-select {
-  font-family: inherit;
+button { cursor: pointer; font-family: var(--font-body); }
+input, textarea, select { font-family: var(--font-body); }
+a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
+a:hover { color: #fff; }
+
+::selection {
+  background: rgba(232, 195, 113, 0.3);
+  color: #fff;
 }
 
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface-raised); border-radius: 99px; border: 2px solid var(--surface); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-    background: #667eea;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #764ba2;
+/* Hide Next.js dev indicator/overlay button in development. */
+nextjs-portal {
+  display: none !important;
 }

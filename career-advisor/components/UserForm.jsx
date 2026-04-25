@@ -1,60 +1,77 @@
 'use client';
 
 import { useState } from 'react';
+import './UserForm.css';
+
+const FIELDS = [
+  {
+    id: 'educationLevel',
+    label: 'Education level & field of study',
+    hint: 'Your highest completed or in-progress qualification',
+    placeholder: "e.g. Bachelor's in Computer Science (Year 1)",
+    type: 'input',
+  },
+  {
+    id: 'technicalSkills',
+    label: 'Technical skills or tools you know',
+    hint: 'List 3–5 that you\'re most confident with',
+    placeholder: 'e.g. Python, React, SQL, data analysis',
+    type: 'textarea',
+    rows: 3,
+  },
+  {
+    id: 'enjoyTasks',
+    label: 'Tasks or problems you enjoy solving',
+    hint: 'Think about what gets you in the zone',
+    placeholder: 'e.g. building dashboards, debugging logic, writing clear documentation',
+    type: 'textarea',
+    rows: 3,
+  },
+  {
+    id: 'workEnvironment',
+    label: 'Ideal work environment',
+    hint: 'Culture, pace, team size — whatever matters to you',
+    placeholder: 'e.g. remote-first, fast-paced startup, collaborative team',
+    type: 'input',
+  },
+  {
+    id: 'targetSalaryLocation',
+    label: 'Target salary & preferred location',
+    hint: 'Be as specific or broad as you like',
+    placeholder: 'e.g. RM 80k in Kuala Lumpur, or remote ASEAN roles',
+    type: 'input',
+  },
+];
 
 export default function UserForm({ onAnalyze }) {
-  const [educationLevel, setEducationLevel] = useState('');
-  const [technicalSkills, setTechnicalSkills] = useState('');
-  const [enjoyTasks, setEnjoyTasks] = useState('');
-  const [workEnvironment, setWorkEnvironment] = useState('');
-  const [targetSalaryLocation, setTargetSalaryLocation] = useState('');
-  const [file, setFile] = useState(null);
+  const [values, setValues] = useState({
+    educationLevel: '',
+    technicalSkills: '',
+    enjoyTasks: '',
+    workEnvironment: '',
+    targetSalaryLocation: '',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleFileChange = (e) => {
-    const selected = e.target.files[0];
-    if (!selected) return;
-    const ext = selected.name.split('.').pop().toLowerCase();
-    if (!['pdf', 'docx'].includes(ext)) {
-      alert('Only PDF and DOCX files are supported');
-      e.target.value = '';
-      return;
-    }
-    setFile(selected);
-  };
-
-  const handleRemoveFile = () => {
-    setFile(null);
-    document.getElementById('file-upload').value = '';
-  };
+  const handleChange = (id, val) => setValues((v) => ({ ...v, [id]: val }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !educationLevel.trim() ||
-      !technicalSkills.trim() ||
-      !enjoyTasks.trim() ||
-      !workEnvironment.trim() ||
-      !targetSalaryLocation.trim()
-    ) {
-      alert(
-        'Please complete all fields so we can provide a strong recommendation.',
-      );
+    const empty = FIELDS.find((f) => !values[f.id].trim());
+    if (empty) {
+      alert(`Please fill in "${empty.label}" before continuing.`);
       return;
     }
 
     setIsSubmitting(true);
 
-    const description = `Education: ${educationLevel.trim()}. Skills / tools: ${technicalSkills.trim()}. Tasks I enjoy: ${enjoyTasks.trim()}. Ideal environment: ${workEnvironment.trim()}. Target salary and location: ${targetSalaryLocation.trim()}.`;
+    const description = FIELDS.map((f) => `${f.label}: ${values[f.id].trim()}.`).join(' ');
 
     try {
-      await onAnalyze(
-        { description, timestamp: new Date().toISOString() },
-        file,
-      );
-    } catch (error) {
-      console.error('Submission error:', error);
+      await onAnalyze({ description, timestamp: new Date().toISOString() });
+    } catch (err) {
+      console.error('Submission error:', err);
       alert('An error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -63,109 +80,50 @@ export default function UserForm({ onAnalyze }) {
 
   return (
     <div className="user-form">
-      <h2>Tell Us About Yourself</h2>
-      <p className="form-description">
-        We've broken your profile into five structured questions to help the
-        Decision Intelligence System give the most accurate recommendation.
-      </p>
+      <div className="form-intro">
+        <h2>Tell us about yourself</h2>
+        <p>
+          Five questions help our system give you the most accurate career match.
+          Be as honest and specific as you can — the more context, the better.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="educationLevel">
-            Current education level and field of study *
-          </label>
-          <input
-            id="educationLevel"
-            type="text"
-            value={educationLevel}
-            onChange={(e) => setEducationLevel(e.target.value)}
-            placeholder="Example: Bachelor's in Computer Science"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="technicalSkills">
-            3–5 technical skills or tools you know *
-          </label>
-          <textarea
-            id="technicalSkills"
-            value={technicalSkills}
-            onChange={(e) => setTechnicalSkills(e.target.value)}
-            placeholder="Example: Python, React, SQL, data analysis"
-            rows="3"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="enjoyTasks">
-            Tasks or problems you enjoy solving *
-          </label>
-          <textarea
-            id="enjoyTasks"
-            value={enjoyTasks}
-            onChange={(e) => setEnjoyTasks(e.target.value)}
-            placeholder="Example: building dashboards, solving business problems, optimizing processes"
-            rows="3"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="workEnvironment">Ideal work environment *</label>
-          <input
-            id="workEnvironment"
-            type="text"
-            value={workEnvironment}
-            onChange={(e) => setWorkEnvironment(e.target.value)}
-            placeholder="Example: remote, fast-paced, collaborative team"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="targetSalaryLocation">
-            Target salary and preferred location *
-          </label>
-          <input
-            id="targetSalaryLocation"
-            type="text"
-            value={targetSalaryLocation}
-            onChange={(e) => setTargetSalaryLocation(e.target.value)}
-            placeholder="Example: RM80k in Kuala Lumpur or remote ASEAN roles"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="file-upload">
-            Upload Resume or CV{' '}
-            <span className="optional-label">(optional — PDF or DOCX)</span>
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            accept=".pdf,.docx"
-            onChange={handleFileChange}
-            className="file-input"
-          />
-          {file && (
-            <div className="file-preview">
-              <span className="file-name">📄 {file.name}</span>
-              <button
-                type="button"
-                className="remove-file-btn"
-                onClick={handleRemoveFile}
-              >
-                ✕ Remove
-              </button>
+      <form onSubmit={handleSubmit} noValidate>
+        {FIELDS.map((field, i) => (
+          <div className="form-field" key={field.id}>
+            <div className="field-label">
+              <label htmlFor={field.id}>{field.label}</label>
+              <span className="field-num">0{i + 1}</span>
             </div>
-          )}
-        </div>
+            {field.hint && <span className="field-hint">{field.hint}</span>}
+
+            {field.type === 'textarea' ? (
+              <textarea
+                id={field.id}
+                value={values[field.id]}
+                onChange={(e) => handleChange(field.id, e.target.value)}
+                placeholder={field.placeholder}
+                rows={field.rows || 3}
+                required
+              />
+            ) : (
+              <input
+                id={field.id}
+                type="text"
+                value={values[field.id]}
+                onChange={(e) => handleChange(field.id, e.target.value)}
+                placeholder={field.placeholder}
+                required
+              />
+            )}
+          </div>
+        ))}
+
+        <hr className="form-divider" />
 
         <button type="submit" className="submit-btn" disabled={isSubmitting}>
-          {isSubmitting ? 'Analyzing...' : 'Get Career Recommendations'}
+          {isSubmitting ? 'Analysing…' : 'Get career recommendations'}
+          {!isSubmitting && <span className="btn-arrow">→</span>}
         </button>
       </form>
     </div>

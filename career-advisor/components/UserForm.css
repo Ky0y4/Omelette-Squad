@@ -1,47 +1,85 @@
-.optional-label {
-  font-weight: 400;
-  font-size: 0.85rem;
-  opacity: 0.6;
+.user-form { padding: 0; }
+
+.form-intro { display: none; }
+
+/* ── Phase 4: Staggered Field Entrances ── */
+.form-field { 
+  margin-bottom: 32px; 
+  animation: fieldFadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both; 
+}
+.form-field:nth-child(1) { animation-delay: 1.7s; }
+.form-field:nth-child(2) { animation-delay: 1.8s; }
+.form-field:nth-child(3) { animation-delay: 1.9s; }
+.form-field:nth-child(4) { animation-delay: 2.0s; }
+.form-field:nth-child(5) { animation-delay: 2.1s; }
+
+@keyframes fieldFadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.file-input {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.9rem;
+.field-label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.field-label label { font-size: 1.05rem; font-weight: 500; color: var(--ink); }
+.field-num { font-size: 11px; font-weight: 600; color: var(--surface); background: var(--gold); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+.field-hint { display: block; font-size: 0.9rem; font-weight: 300; color: var(--ink-muted); margin-bottom: 12px; }
+
+/* ── Elegant Inputs ── */
+.form-field input, .form-field textarea {
   width: 100%;
+  padding: 16px 20px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  transition: all var(--transition);
+  outline: none;
+  resize: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.file-preview {
+.form-field input::placeholder, .form-field textarea::placeholder { color: var(--ink-faint); font-weight: 300; }
+.form-field input:hover, .form-field textarea:hover { border-color: rgba(255, 255, 255, 0.2); }
+.form-field input:focus, .form-field textarea:focus {
+  background: var(--surface);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232, 195, 113, 0.15);
+}
+
+.form-divider { display: none; }
+
+/* ── Phase 5: Button Entrance & Pulse ── */
+.submit-btn {
+  width: 100%;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #e8c371 0%, #c9972a 100%);
+  color: #1a1815; 
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: rgba(74, 144, 226, 0.08);
-  border: 1px solid rgba(74, 144, 226, 0.2);
-  border-radius: 6px;
-  font-size: 0.9rem;
+  margin-top: 48px;
+  /* Button slides in at 2.4s, then starts pulsing continuously */
+  animation: fieldFadeUp 0.8s 2.4s cubic-bezier(0.25, 1, 0.5, 1) both, pulseGlow 2.5s infinite cubic-bezier(0.66, 0, 0, 1) 3.5s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(201, 151, 42, 0.2);
 }
 
-.file-name {
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+@keyframes pulseGlow {
+  0% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(201, 151, 42, 0.4); }
+  70% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 12px rgba(201, 151, 42, 0); }
+  100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(201, 151, 42, 0); }
 }
 
-.remove-file-btn {
-  background: none;
-  border: none;
-  color: #e06c75;
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 2px 8px;
-  border-radius: 4px;
-  flex-shrink: 0;
-  transition: background 0.2s;
-}
+.submit-btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(201, 151, 42, 0.3); }
+.submit-btn:active:not(:disabled) { transform: translateY(0); }
+.submit-btn:disabled { background: var(--surface-raised); color: var(--ink-faint); box-shadow: none; cursor: not-allowed; animation: none; }
 
-.remove-file-btn:hover {
-  background: rgba(224, 108, 117, 0.15);
-}
+.btn-arrow { font-size: 1.2rem; transition: transform var(--transition); }
+.submit-btn:hover:not(:disabled) .btn-arrow { transform: translateX(6px); }

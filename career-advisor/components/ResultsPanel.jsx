@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './ResultsPanel.css';
 
 export default function ResultsPanel({ results }) {
@@ -17,23 +17,17 @@ export default function ResultsPanel({ results }) {
 
   return (
     <div className="results-panel">
-      <div className="results-header">
-        <h2>Your Career Analysis Results</h2>
-        <div className="summary">
-          <h3>Summary</h3>
-          <p>{summary}</p>
-        </div>
+      <div className="results-summary">
+        <p className="label">Analysis complete</p>
+        <h2>Your career recommendations</h2>
+        {summary && <p>{summary}</p>}
       </div>
 
-      <div className="careers-section">
-        <h3>Top Career Recommendations</h3>
+      <div>
+        <h3 className="section-heading">Top {top_careers.length} matches</h3>
         <div className="careers-grid">
           {top_careers.map((career, index) => (
-            <CareerCard
-              key={career.role}
-              career={career}
-              rank={index + 1}
-            />
+            <CareerCard key={career.role || index} career={career} rank={index + 1} />
           ))}
         </div>
       </div>
@@ -45,71 +39,89 @@ function CareerCard({ career, rank }) {
   const [scoreWidth, setScoreWidth] = useState(0);
 
   useEffect(() => {
-    // Set the score width after component mounts to avoid hydration mismatch
-    setScoreWidth(career.match_score || 0);
+    const t = setTimeout(() => setScoreWidth(career.match_score || 0), 120);
+    return () => clearTimeout(t);
   }, [career.match_score]);
 
-  const medal = rank === 1 ? '1st' : rank === 2 ? '2nd' : rank === 3 ? '3rd' : `#${rank}`;
+  const rankLabel = rank === 1 ? '1st' : rank === 2 ? '2nd' : rank === 3 ? '3rd' : `#${rank}`;
+  const rankClass = rank <= 2 ? `rank-${rank}` : '';
+
+  const nextSteps = career.next_steps
+    ? career.next_steps.split('\n').filter(Boolean)
+    : [];
 
   return (
     <div className="career-card">
       <div className="card-header">
-        <div className="rank-badge">
-          <span className="medal">{medal}</span>
-          <span className="rank-text">#{rank}</span>
-        </div>
-        <h4>{career.role}</h4>
-        <div className="match-score">
-          <div className="score-bar">
-            <div
-              className="score-fill"
-              style={{ width: `${scoreWidth}%`, transition: 'width 0.8s ease' }}
-            ></div>
+        <div className={`rank-badge ${rankClass}`}>{rankLabel}</div>
+        <div className="card-header-text">
+          <h4>{career.role}</h4>
+          <div className="match-score">
+            <div className="score-track">
+              <div className="score-fill" style={{ width: `${scoreWidth}%` }} />
+            </div>
+            <span className="score-label">{career.match_score}% match</span>
           </div>
-          <span className="score-text">{career.match_score}% Match</span>
         </div>
       </div>
 
-      <div className="card-content">
-        <div className="section">
-          <h5>Why It Fits</h5>
-          <p>{career.why_it_fits}</p>
+      <div className="card-body">
+        <div className="info-row">
+          {career.why_it_fits && (
+            <div className="info-block">
+              <h5>Why it fits</h5>
+              <p>{career.why_it_fits}</p>
+            </div>
+          )}
+          {career.trade_offs && (
+            <div className="info-block">
+              <h5>Trade-offs</h5>
+              <p>{career.trade_offs}</p>
+            </div>
+          )}
         </div>
 
-        <div className="section">
-          <h5>Trade-offs</h5>
-          <p>{career.trade_offs}</p>
-        </div>
-
-        <div className="section">
-          <h5>Next Steps</h5>
-          <div className="next-steps">
-            {career.next_steps?.split('\n').map((step, index) => (
-              <div key={index} className="step">
-                {step}
+        {nextSteps.length > 0 && (
+          <div>
+            <div className="info-block">
+              <h5>Next steps</h5>
+              <div className="next-steps-list">
+                {nextSteps.map((step, i) => (
+                  <div className="step-item" key={i}>
+                    <div className="step-dot" />
+                    <span>{step}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="section insight-section">
-          <h5>Market Reality</h5>
-          <p>{career.market_reality}</p>
-        </div>
-
-        <div className="section insight-section">
-          <h5>Economic Forecast</h5>
-          <p>{career.economic_forecast}</p>
-        </div>
-
-        <div className="section insight-section">
-          <h5>Optimization Strategy</h5>
-          <p>{career.optimization_strategy}</p>
-        </div>
-
-        <div className="section insight-section">
-          <h5>Decision Impact</h5>
-          <p>{career.decision_impact}</p>
+        <div className="insights-grid">
+          {career.market_reality && (
+            <div className="insight-block">
+              <h5>Market reality</h5>
+              <p>{career.market_reality}</p>
+            </div>
+          )}
+          {career.economic_forecast && (
+            <div className="insight-block">
+              <h5>Economic forecast</h5>
+              <p>{career.economic_forecast}</p>
+            </div>
+          )}
+          {career.optimization_strategy && (
+            <div className="insight-block">
+              <h5>Optimization strategy</h5>
+              <p>{career.optimization_strategy}</p>
+            </div>
+          )}
+          {career.decision_impact && (
+            <div className="insight-block">
+              <h5>Decision impact</h5>
+              <p>{career.decision_impact}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
