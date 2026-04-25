@@ -1,13 +1,14 @@
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from langchain_groq import ChatGroq
+from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import json
 import re
 from loadData import DATASETS
 from readFiles import readPDF, readDOCX
+import httpx
 
 load_dotenv()
 
@@ -99,8 +100,14 @@ async def get_response(profile: UserProfile) -> dict:
         except Exception:
             continue
 
-    prompt = f"""
-    You are Z.AI GLM, a context-aware Mathematical Decision Intelligence System.
+    client = OpenAI(
+        api_key=os.getenv("ZAI_API_KEY"),
+        base_url="https://api.ilmu.ai/v1",
+        http_client=httpx.Client(timeout=120.0)
+    )
+
+    content = f"""
+    You are a context-aware Mathematical Decision Intelligence System.
     Always respond with valid JSON only. Do not include markdown, code fences, or any explanation outside the JSON.
 
     You have access to the following datasets:
@@ -130,7 +137,7 @@ async def get_response(profile: UserProfile) -> dict:
     - Add warning "Potential debt trap" when education_cost > 50000 and starting_salary is low.
 
     Weight this recommendation for Economic Empowerment. In the "why_it_fits" section, explain how the career reduces the risk of skill-related underemployment and balances the user's financial constraints with market ROI.
-    Mention that Z.AI GLM is performing context-aware reasoning by weighing the user's budget, risk tolerance, and market ROI.
+    Mention that this system is performing context-aware reasoning by weighing the user's budget, risk tolerance, and market ROI.
 
     User profile:
     {profile.description}
@@ -161,21 +168,17 @@ async def get_response(profile: UserProfile) -> dict:
     }}
     """
 
-    llm = ChatGroq(
-        model="llama-3.3-70b-versatile",
-        api_key=os.getenv("GROQ_API_KEY"),
+    response = client.chat.completions.create(
+        model="ilmu-glm-5.1",
+        messages=[
+            {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
+            {"role": "user", "content": content},
+        ],
     )
-
-    messages = [
-        ("system", "You are a Decision Intelligence System. Always respond with valid JSON only."),
-        ("human", prompt),
-    ]
-
-    response = llm.invoke(messages)
 
 
     try:
-        raw = response.content.strip()
+        raw = response.choices[0].message.content.strip()
         raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
         print(f"RAW RESPONSE: {raw[:500]}")
         return json.loads(raw)
