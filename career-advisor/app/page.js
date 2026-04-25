@@ -19,6 +19,8 @@ export default function Home() {
       const formData = new FormData();
       formData.append("description", userProfile.description);
       formData.append("timestamp", userProfile.timestamp);
+      formData.append("budget_constraint", userProfile.budgetConstraint);
+      formData.append("risk_tolerance", userProfile.riskTolerance);
 
       const response = await fetch("http://localhost:8000/analyze", {
         method: "POST",

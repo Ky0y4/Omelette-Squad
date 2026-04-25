@@ -41,6 +41,27 @@ const FIELDS = [
     placeholder: 'e.g. RM 80k in Kuala Lumpur, or remote ASEAN roles',
     type: 'input',
   },
+  {
+    id: 'budgetConstraint',
+    label: 'Budget constraint',
+    hint: 'How much you want or can invest in education',
+    type: 'select',
+    options: [
+      { value: 'low', label: 'Low' },
+      { value: 'medium', label: 'Medium' },
+      { value: 'high', label: 'High' },
+    ],
+  },
+  {
+    id: 'riskTolerance',
+    label: 'Risk tolerance',
+    hint: 'How comfortable you are with financial uncertainty',
+    type: 'select',
+    options: [
+      { value: 'low', label: 'Low' },
+      { value: 'high', label: 'High' },
+    ],
+  },
 ];
 
 export default function UserForm({ onAnalyze }) {
@@ -50,6 +71,8 @@ export default function UserForm({ onAnalyze }) {
     enjoyTasks: '',
     workEnvironment: '',
     targetSalaryLocation: '',
+    budgetConstraint: 'medium',
+    riskTolerance: 'low',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -69,7 +92,12 @@ export default function UserForm({ onAnalyze }) {
     const description = FIELDS.map((f) => `${f.label}: ${values[f.id].trim()}.`).join(' ');
 
     try {
-      await onAnalyze({ description, timestamp: new Date().toISOString() });
+      await onAnalyze({
+        description,
+        timestamp: new Date().toISOString(),
+        budgetConstraint: values.budgetConstraint,
+        riskTolerance: values.riskTolerance,
+      });
     } catch (err) {
       console.error('Submission error:', err);
       alert('An error occurred. Please try again.');
@@ -106,6 +134,19 @@ export default function UserForm({ onAnalyze }) {
                 rows={field.rows || 3}
                 required
               />
+            ) : field.type === 'select' ? (
+              <select
+                id={field.id}
+                value={values[field.id]}
+                onChange={(e) => handleChange(field.id, e.target.value)}
+                required
+              >
+                {field.options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             ) : (
               <input
                 id={field.id}

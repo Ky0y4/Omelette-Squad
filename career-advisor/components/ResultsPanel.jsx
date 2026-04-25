@@ -38,10 +38,15 @@ export default function ResultsPanel({ results }) {
 function CareerCard({ career, rank }) {
   const [scoreWidth, setScoreWidth] = useState(0);
 
+  const rawScore = career.final_score ?? career.match_score ?? 0;
+  const finalScore = Number(rawScore) || 0;
+  const scoreDisplay = `${Math.round(finalScore)}%`;
+  const scoreWidthValue = Math.min(100, Math.max(0, finalScore));
+
   useEffect(() => {
-    const t = setTimeout(() => setScoreWidth(career.match_score || 0), 120);
+    const t = setTimeout(() => setScoreWidth(scoreWidthValue), 120);
     return () => clearTimeout(t);
-  }, [career.match_score]);
+  }, [scoreWidthValue]);
 
   const rankLabel = rank === 1 ? '1st' : rank === 2 ? '2nd' : rank === 3 ? '3rd' : `#${rank}`;
   const rankClass = rank <= 2 ? `rank-${rank}` : '';
@@ -50,22 +55,45 @@ function CareerCard({ career, rank }) {
     ? career.next_steps.split('\n').filter(Boolean)
     : [];
 
+  const financialTags = Array.isArray(career.financial_tags) ? career.financial_tags : [];
+  const riskWarnings = Array.isArray(career.risk_warnings) ? career.risk_warnings : [];
+
+  const formattedRoe = career.roe_percentage != null
+    ? typeof career.roe_percentage === 'number'
+      ? `${career.roe_percentage.toFixed(2)}x`
+      : career.roe_percentage
+    : null;
+  const formattedBreakEven = career.break_even_years != null
+    ? typeof career.break_even_years === 'number'
+      ? `${career.break_even_years.toFixed(1)} years`
+      : career.break_even_years
+    : null;
+
   return (
     <div className="career-card">
       <div className="card-header">
         <div className={`rank-badge ${rankClass}`}>{rankLabel}</div>
         <div className="card-header-text">
           <h4>{career.role}</h4>
+          <div className="final-score-pill">Final score: {scoreDisplay}</div>
           <div className="match-score">
             <div className="score-track">
               <div className="score-fill" style={{ width: `${scoreWidth}%` }} />
             </div>
-            <span className="score-label">{career.match_score}% match</span>
+            <span className="score-label">{scoreDisplay} confidence</span>
           </div>
         </div>
       </div>
 
       <div className="card-body">
+        {riskWarnings.length > 0 && (
+          <div className="alert-box">
+            {riskWarnings.map((warning, i) => (
+              <div className="alert-item" key={i}>{warning}</div>
+            ))}
+          </div>
+        )}
+
         <div className="info-row">
           {career.why_it_fits && (
             <div className="info-block">
@@ -96,6 +124,31 @@ function CareerCard({ career, rank }) {
             </div>
           </div>
         )}
+
+        <div className="roi-grid">
+          {formattedRoe && (
+            <div className="roi-block">
+              <h5>ROE</h5>
+              <p>{formattedRoe}</p>
+            </div>
+          )}
+          {formattedBreakEven && (
+            <div className="roi-block">
+              <h5>Break-even years</h5>
+              <p>{formattedBreakEven}</p>
+            </div>
+          )}
+          {financialTags.length > 0 && (
+            <div className="roi-block">
+              <h5>Financial tags</h5>
+              <div className="badge-row">
+                {financialTags.map((tag, i) => (
+                  <span className="badge" key={i}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="insights-grid">
           {career.market_reality && (
