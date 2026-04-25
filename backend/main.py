@@ -145,10 +145,10 @@ async def get_response(profile: UserProfile) -> dict:
       "top_careers": [
         {{
           "role": "...",
-          "match_score": 0,
-          "final_score": 0,
-          "roe_percentage": 0,
-          "break_even_years": 0,
+          "match_score": 90,
+          "final_score": 80,
+          "roe_percentage": 250,
+          "break_even_years": 2.5,
           "financial_tags": ["..."],
           "risk_warnings": ["..."],
           "why_it_fits": "...",
