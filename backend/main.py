@@ -1,14 +1,13 @@
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from openai import OpenAI
+from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 import os
 import json
 import re
 from loadData import DATASETS
 from readFiles import readPDF, readDOCX
-import httpx
 
 load_dotenv()
 
@@ -25,12 +24,15 @@ app.add_middleware(
 class UserProfile(BaseModel):
     description: str
     timestamp: str
-
+    budget_constraint: str
+    risk_tolerance: str
 
 @app.post("/analyze")
 async def analyze_career(
     description: str = Form(...),
     timestamp: str = Form(...),
+    budget_constraint: str = Form(...),
+    risk_tolerance: str = Form(...),
     file: UploadFile = File(None),
 ):
     print(f"I RECEIVED DA DATA: {description[:100]}")
@@ -57,7 +59,12 @@ async def analyze_career(
     if extra:
         full_description += f"\n\n=== ADDITIONAL CONTEXT FROM UPLOADED DOCUMENT ===\n{extra[:3000]}"
 
-    profile = UserProfile(description=full_description, timestamp=timestamp)
+    profile = UserProfile(
+        description=full_description,
+        timestamp=timestamp,
+        budget_constraint=budget_constraint,
+        risk_tolerance=risk_tolerance,
+    )
 
     try:
         result = await get_response(profile)
@@ -80,14 +87,8 @@ async def get_response(profile: UserProfile) -> dict:
     courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []))[:1000]
     job_summary        = json.dumps(DATASETS.get('job.csv', []))[:1000]
 
-    client = OpenAI(
-        api_key=os.getenv("ZAI_API_KEY"),
-        base_url="https://api.ilmu.ai/v1",
-        http_client=httpx.Client(timeout=120.0)
-    )
-
-    content = f"""
-    You are a Decision Intelligence System. Always respond with valid JSON only.
+    prompt = f"""
+    Use Decision Intelligence System reasoning. Always respond with valid JSON only.
 
     You have access to these market datasets. You MUST reference the provided datasets as you analyze the profile.
     - MyCOL 2024/25 workforce criticality and role safety data: {workforce_summary}
@@ -99,14 +100,35 @@ async def get_response(profile: UserProfile) -> dict:
     - Course information: {courseinfo_summary}
     - Job information: {job_summary}
 
+    The user has these constraints:
+    - budget_constraint: {profile.budget_constraint}
+    - risk_tolerance: {profile.risk_tolerance}
+
     Given this person's profile: {profile.description}
 
-    Give concise recommendations and justify them with the data.
-    Use the provided datasets to support:
-    - the criticality and safety of the recommended role,
-    - the median salary and regional economic signal,
-    - a concrete skill-up recommendation,
-    - the impact of those skills on career risk, salary, and growth.
+    You must perform a Weighted Multi-Criteria Decision Analysis (MCDA) in your reasoning.
+    Extract and calculate the following values for every recommended career from workforce.json, courseinfo.csv, and marketanalysis.json:
+    - annual_salary = starting_salary * 1.25
+    - 5_year_earnings = annual_salary * 5 * (1 + salary_growth_rate)
+    - ROE = (5_year_earnings - education_cost) / education_cost
+    - break_even_years = education_cost / annual_salary
+    - financial_score = (ROE * 0.30) + (salary_growth_rate * 0.20) + (employment_probability * 0.20) + ((1 - automation_risk) * 0.15) + ((1 / break_even_years) * 0.15)
+    - final_score = (financial_score * 0.6) + (personal_fit_score * 0.4)
+
+    Return final_score as a percentage between 0 and 100.
+    Return roe_percentage as a percent value for ROE.
+
+    Apply penalty and tagging rules exactly:
+    - If budget_constraint == "low", subtract (education_cost / max_cost) * 0.2 from final_score, where max_cost is the highest fee in courseinfo.csv.
+    - If break_even_years > 5, subtract 0.15 from final_score.
+    - Add "High Return Career" tag if ROE > 3.
+    - Add "Fast Payback" tag if break_even_years < 2.
+    - Add warning "High financial risk" if calculated risk > 0.6.
+    - Add warning "Potential debt trap" if education_cost > 50000 and annual_salary is low.
+
+    Use the user's risk tolerance and budget constraint to adjust decisions with economic empowerment logic.
+    In the "Why it fits" explanation, explicitly explain how the Economic Optimization logic weighs financial constraints, market ROI, and underemployment risk.
+    Do not refer to the model or mention any AI system in the output.
 
     Respond ONLY with a valid JSON object — no markdown, no explanation, no code fences.
     Follow this exact structure:
@@ -123,7 +145,12 @@ async def get_response(profile: UserProfile) -> dict:
                 "market_reality": "Detail the role criticality and safety based on the MyCOL/workforce data.",
                 "economic_forecast": "Provide the median salary and regional data based on the DOSM/wage data.",
                 "optimization_strategy": "Provide a skill-up recommendation based on the FSF/future skills data.",
-                "decision_impact": "Explain how adding these skills impacts their career, salary, or risk."
+                "decision_impact": "Explain how adding these skills impacts their career, salary, or risk.",
+                "final_score": 0,
+                "roe_percentage": 0,
+                "break_even_years": 0,
+                "financial_tags": ["..."],
+                "risk_warnings": ["..."]
             }}
         ]
     }}
@@ -131,16 +158,22 @@ async def get_response(profile: UserProfile) -> dict:
     You can include more or fewer careers depending on what fits this person.
     """
 
-    response = client.chat.completions.create(
-        model="ilmu-glm-5.1",
-        messages=[
-            {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
-            {"role": "user", "content": content},
-        ],
+    llm = ChatGroq(
+        model="llama-3.3-70b-versatile",
+        api_key=os.getenv("GROQ_API_KEY"),
     )
 
+    messages = [
+        ("system", "You are a Decision Intelligence System. Always respond with valid JSON only."),
+        ("human", prompt),
+    ]
+
+    response = llm.invoke(messages)
+
+    response = llm.invoke(messages)
+
     try:
-        raw = response.choices[0].message.content.strip()
+        raw = response.content.strip()
         raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
         print(f"RAW RESPONSE: {raw[:500]}")
         return json.loads(raw)
