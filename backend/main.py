@@ -1,16 +1,18 @@
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from openai import OpenAI
 from dotenv import load_dotenv
+import google.generativeai as genai
 import os
 import json
 import re
 from loadData import DATASETS
 from readFiles import readPDF, readDOCX
-import httpx
 
 load_dotenv()
+
+# Configure the Gemini API client globally
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = FastAPI()
 
@@ -100,12 +102,6 @@ async def get_response(profile: UserProfile) -> dict:
         except Exception:
             continue
 
-    client = OpenAI(
-        api_key=os.getenv("ZAI_API_KEY"),
-        base_url="https://api.ilmu.ai/v1",
-        http_client=httpx.Client(timeout=120.0)
-    )
-
     content = f"""
     You are a context-aware Mathematical Decision Intelligence System.
     Always respond with valid JSON only. Do not include markdown, code fences, or any explanation outside the JSON.
@@ -129,7 +125,7 @@ async def get_response(profile: UserProfile) -> dict:
     - Final Score = (Financial Score * 0.6) + (Personal Fit Score * 0.4)
 
     Apply these policy rules:
-    - If budget_constraint == "low", subtract (education_cost / {max_cost}) * 0.2 from Final Score.
+    - If budget_constraint == "low", subtract (education_cost / {max_cost if max_cost > 0 else 1}) * 0.2 from Final Score.
     - If break_even_years > 5, subtract 0.15 from Final Score.
     - Add tag "High Return Career" when ROE > 3.
     - Add tag "Fast Payback" when break_even_years < 2.
@@ -168,20 +164,23 @@ async def get_response(profile: UserProfile) -> dict:
     }}
     """
 
-    response = client.chat.completions.create(
-        model="ilmu-glm-5.1",
-        messages=[
-            {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
-            {"role": "user", "content": content},
-        ],
-    )
-
-
     try:
-        raw = response.choices[0].message.content.strip()
-        raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
+        # Initialize the Gemini model (gemini-1.5-flash is excellent for fast, free-tier JSON tasks)
+        model = genai.GenerativeModel(
+            model_name="gemini-3-flash-preview",
+            system_instruction="You are a Decision Intelligence System. Always respond with valid JSON only.",
+            generation_config={"response_mime_type": "application/json"} # Forces strict JSON output
+        )
+
+        # Await the async generation call
+        response = await model.generate_content_async(content)
+
+        # With response_mime_type="application/json", it guarantees JSON text without markdown wrappers
+        raw = response.text.strip()
         print(f"RAW RESPONSE: {raw[:500]}")
+        
         return json.loads(raw)
+        
     except json.JSONDecodeError as e:
         print(f"JSON PARSE FAILED: {e}")
         print(f"RAW WAS: {raw}")
@@ -191,4 +190,3 @@ async def get_response(profile: UserProfile) -> dict:
         print(f"GET_RESPONSE ERROR: {e}")
         print(traceback.format_exc())
         raise
-
