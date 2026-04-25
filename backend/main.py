@@ -1,14 +1,13 @@
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from openai import OpenAI
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 import os
 import json
 import re
 from loadData import DATASETS
 from readFiles import readPDF, readDOCX
-import httpx
 
 load_dotenv()
 
@@ -25,7 +24,6 @@ app.add_middleware(
 class UserProfile(BaseModel):
     description: str
     timestamp: str
-
 
 @app.post("/analyze")
 async def analyze_career(
@@ -80,15 +78,7 @@ async def get_response(profile: UserProfile) -> dict:
     courseinfo_summary = json.dumps(DATASETS.get('courseinfo.csv', []))[:1000]
     job_summary        = json.dumps(DATASETS.get('job.csv', []))[:1000]
 
-    client = OpenAI(
-        api_key=os.getenv("ZAI_API_KEY"),
-        base_url="https://api.ilmu.ai/v1",
-        http_client=httpx.Client(timeout=120.0)
-    )
-
-    content = f"""
-    You are a Decision Intelligence System. Always respond with valid JSON only.
-
+    prompt = f"""
     You have access to these market datasets. You MUST reference the provided datasets as you analyze the profile.
     - MyCOL 2024/25 workforce criticality and role safety data: {workforce_summary}
     - DOSM 2024 median salary and regional wage data: {market_summary}
@@ -131,16 +121,20 @@ async def get_response(profile: UserProfile) -> dict:
     You can include more or fewer careers depending on what fits this person.
     """
 
-    response = client.chat.completions.create(
-        model="ilmu-glm-5.1",
-        messages=[
-            {"role": "system", "content": "You are a Decision Intelligence System. Always respond with valid JSON only."},
-            {"role": "user", "content": content},
-        ],
+    llm = ChatGroq(
+        model="llama-3.3-70b-versatile",
+        api_key=os.getenv("GROQ_API_KEY"),
     )
 
+    messages = [
+        ("system", "You are a Decision Intelligence System. Always respond with valid JSON only."),
+        ("human", prompt),
+    ]
+
+    response = llm.invoke(messages)
+
     try:
-        raw = response.choices[0].message.content.strip()
+        raw = response.content.strip()
         raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.MULTILINE).strip()
         print(f"RAW RESPONSE: {raw[:500]}")
         return json.loads(raw)
